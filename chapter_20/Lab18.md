@@ -1,3 +1,6 @@
+<img align="right" src="../logo-small.png">
+
+
 ### How to Develop LSTMs for Multi-step Energy Usage Forecasting
 
 Given the rise of smart electricity meters and the wide adoption of electricity generation

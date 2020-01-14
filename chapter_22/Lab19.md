@@ -1,3 +1,5 @@
+<img align="right" src="../logo-small.png">
+
 
 ### How to Load and Explore Human Activity Data
 
