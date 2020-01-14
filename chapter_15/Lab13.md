@@ -1,3 +1,6 @@
+<img align="right" src="../logo-small.png">
+
+
 ### How to Grid Search Deep Learning Models for Univariate Forecasting
 
 Grid searching is generally not an operation that we can perform with deep learning methods.
