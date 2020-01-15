@@ -25,7 +25,7 @@ data for births.
 - How to grid search SARIMA model hyperparameters for monthly time series data for
 shampoo sales, car sales, and temperature.
 
-Let’s get started.
+Let' s get started.
 
 ### Tutorial Overview
 
@@ -50,14 +50,12 @@ performed for the series, trend and seasonality, specifically:
 - seasonalorder: A tuple of P,D,Q, andmparameters for the modeling the
 seasonality
 
-- trend: A parameter for controlling a model of the deterministic trend as one of‘n’,‘c’,
-‘t’, and‘ct’for no trend, constant, linear, and constant with linear trend, respectively.
+- trend: A parameter for controlling a model of the deterministic trend as one of 'n' , 'c' ,
+ 't' , and  'ct' for no trend, constant, linear, and constant with linear trend, respectively.
 
 If you know enough about your problem to specify one or more of these parameters, then
-
 you should specify them. If not, you can try grid searching these
 parameters. We can start-off
-
 by defining a function that will fit a model with a given configuration and make a one-step
 forecast. Thesarimaforecast()below implements this behavior.
 The function takes an array or list of contiguous prior observations and a list of configuration
@@ -111,11 +109,12 @@ return error
 
 ```
 
-We’re nearly done. The only thing left to do is to define a list of model configurations to
+We' re nearly done. The only thing left to do is to define a list of model configurations to
 try for a dataset. We can define this generically. The only parameter we may want to specify
 is the periodicity of the seasonal component in the series, if one exists. By default, we will
 assume no seasonal component. Thesarimaconfigs() function below will create a list of
 model configurations to evaluate.
+
 The configurations assume each of the AR, MA, and I components for trend and seasonality
 are low order, e.g. off (0) or in[1,2]. You may want to extend these ranges if you believe the
 order may be higher. An optional list of seasonal periods can be specified, and you could even
@@ -306,7 +305,7 @@ done
 ```
 
 Now that we have a robust framework for grid searching SARIMA model hyperparameters,
-let’s test it out on a suite of standard univariate time series datasets. The datasets were chosen
+let's test it out on a suite of standard univariate time series datasets. The datasets were chosen
 for demonstration purposes; I am not suggesting that a SARIMA model is the best approach
 for each dataset; perhaps an ETS or something else would be more appropriate in some cases.
 
@@ -490,7 +489,7 @@ follows:
 
 - Seasonal Order: (1, 0, 1, 0)
 
-- Trend Parameter:‘t’for linear trend
+- Trend Parameter: 't' for linear trend
 
 It is surprising that a configuration with some seasonal elements resulted in the lowest error.
 I would not have guessed at this configuration and would have likely stuck with an ARIMA
@@ -498,7 +497,7 @@ model.
 
 ### Case Study 2: Trend
 
-Themonthly shampoo salesdataset summarizes the monthly sales of shampoo
+The monthly shampoo salesdataset summarizes the monthly sales of shampoo
 over a three-year
 period. For more information on this dataset, see Chapter 11 where it was introduced. You can
 download the dataset directly from here:
@@ -596,7 +595,6 @@ scores = [r for r in scores if r[1] != None]
 
 scores.sort(key=lambda tup: tup[1])
 
-
 return scores
 
 def sarima_configs(seasonal=[0]):
@@ -671,19 +669,16 @@ an RMSE of 95.69 sales on this dataset, meaning that the best performing SARIMA 
 is skillful on this problem. We can unpack the configuration of the best performing model as
 follows:
 
-```
-
 - Trend Order: (0, 1, 2)
 
 - Seasonal Order: (2, 0, 2, 0)
 
-- Trend Parameter:‘t’(linear trend)
+- Trend Parameter: 't' (linear trend)
 
 ### Case Study 3: Seasonality
 
-Themonthly mean temperaturesdataset summarizes the monthly average air
+The monthly mean temperaturesdataset summarizes the monthly average air
 temperatures in
-
 Nottingham Castle, England from 1920 to 1939 in degrees Fahrenheit. For more information on
 this dataset, see Chapter 11 where it was introduced. You can download the dataset directly
 from here:
@@ -695,14 +690,15 @@ working directory.
 
 The dataset has 20 years, or 240 observations. We will trim the dataset
 to the last five years of
-
 data (60 observations) in order to speed up the model evaluation process and use the last year
 or 12 observations for the test set.
 
+```
 # trim dataset to 5 years
 data = data[-(5*12):]
 
 ```
+
 The period of the seasonal component is about one year, or 12 observations. We will use
 this as the seasonal period in the call to thesarimaconfigs() function when preparing the
 model configurations.
@@ -882,14 +878,14 @@ model as follows:
 
 - Seasonal Order: (1, 0, 1, 12)
 
-- Trend Parameter:‘n’(no trend)
+- Trend Parameter: 'n' (no trend)
 
 As we would expect, the model has no trend component and a 12-month seasonal ARIMA
 component.
 
 ### Case Study 4: Trend and Seasonality
 
-Themonthly car salesdataset summarizes the monthly car sales in Quebec,
+The monthly car salesdataset summarizes the monthly car sales in Quebec,
 Canada between
 where it was introduced.
 
@@ -1042,21 +1038,13 @@ print(cfg, error)
 
 ```
 
-Running the example may take a while on modern hardware. Model
-configurations and the
-
-RMSE are printed as the models are evaluated. The top three model
-configurations and their
-
-error are reported at the end of the run. A truncated example of the
-results from running the
-
+Running the example may take a while on modern hardware. Model configurations and the
+RMSE are printed as the models are evaluated. The top three model configurations and their
+error are reported at the end of the run. A truncated example of the results from running the
 hyperparameter grid search are listed below.
 
 **Note:** Given the stochastic nature of the algorithm, your specific
 results may vary. Consider
-
-
 running the example a few times.
 
 ```
@@ -1082,7 +1070,23 @@ is skillful. We can unpack the configuration of the best performing model as fol
 
 - Seasonal Order: (1, 1, 0, 12)
 
-- Trend Parameter:‘t’(linear trend)
+- Trend Parameter: 't' (linear trend)
+
+##### Run Notebook
+Click notebook `01_grid_search.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `02_grid_search_daily_births.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `03_grid_search_monthly_shampoo_sales.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `04_grid_search_monthly_mean_temp.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `05_grid_search_monthly_car_sales.ipynb` in jupterLab UI and run jupyter notebook.
+
 
 ### Extensions
 
@@ -1098,34 +1102,6 @@ in the test set.
 
 - Tune Amount of History. Update the framework to tune the amount of historical data
 used to fit the model (e.g. in the case of the 10 years of max temperature data).
-
-
-### Further Reading
-
-This section provides more resources on the topic if you are looking to
-go deeper.
-
-#### APIs
-
-- Statsmodels Time Series Analysis by State Space Methods.
-http://www.statsmodels.org/dev/statespace.html
-
-- statsmodels.tsa.statespace.sarimax.SARIMAXAPI.
-http://www.statsmodels.org/dev/generated/statsmodels.tsa.statespace.sarimax.
-SARIMAX.html
-
-- statsmodels.tsa.statespace.sarimax.SARIMAXResultsAPI.
-http://www.statsmodels.org/dev/generated/statsmodels.tsa.statespace.sarimax.
-SARIMAXResults.html
-
-- Statsmodels SARIMAX Notebook.
-http://www.statsmodels.org/dev/examples/notebooks/generated/statespace_sarimax_
-stata.html
-
-#### Articles
-
-- Autoregressive integrated moving average, Wikipedia.
-https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average
 
 ### Summary
 
@@ -1147,6 +1123,4 @@ shampoo sales, car sales and temperature.
 #### Next
 
 In the next lab, you will discover how to develop deep learning
-models for univariate time
-
-series forecasting problems.
+models for univariate time series forecasting problems.

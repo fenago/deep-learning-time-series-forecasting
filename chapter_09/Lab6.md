@@ -17,7 +17,7 @@ After completing this tutorial, you will know:
 
 - How to develop LSTM models for multi-step time series forecasting.
 
-Let’s get started.
+Let' s get started.
 
 ### Tutorial Overview
 
@@ -149,7 +149,7 @@ three input time steps and one output time step.
 
 ```
 
-Now that we know how to prepare a univariate series for modeling, let’s look at developing
+Now that we know how to prepare a univariate series for modeling, let's look at developing
 LSTM models that can learn the mapping of inputs to outputs, starting with a Vanilla LSTM.
 
 #### Vanilla LSTM
@@ -196,7 +196,7 @@ X = X.reshape((X.shape[0], X.shape[1], n_features))
 ```
 In this case, we define a model with 50 LSTM units in the hidden layer and an output layer
 that predicts a single numerical value. The model is fit using the efficient Adam version of
-stochastic gradient descent and optimized using the mean squared error, or‘mse’loss function.
+stochastic gradient descent and optimized using the mean squared error, or 'mse' loss function.
 Once the model is defined, we can fit it on the training dataset.
 
 ```
@@ -505,7 +505,7 @@ model.add(TimeDistributed(Flatten()))
 
 ```
 
-Next, we can define the LSTM part of the model that interprets the CNN model’s read of
+Next, we can define the LSTM part of the model that interprets the CNN model' s read of
 the input sequence and makes a prediction.
 
 ```
@@ -693,7 +693,7 @@ results may vary. Consider running the example a few times.
 For an example of an LSTM applied to a real-world univariate time series forecasting problem
 see Chapter 14. For an example of grid searching LSTM hyperparameters on a univariate time
 series forecasting problem, see Chapter 15. Now that we have looked at LSTM models for
-univariate data, let’s turn our attention to multivariate data.
+univariate data, let's turn our attention to multivariate data.
 
 ### Multivariate LSTM Models
 
@@ -704,7 +704,7 @@ they are:
 1.  Multiple Input Series.
 2.  Multiple Parallel Series.
 
-Let’s take a look at each in turn.
+Let' s take a look at each in turn.
 
 #### Multiple Input Series
 
@@ -1307,7 +1307,7 @@ LSTM models that can be used for multi-step forecasting; they are:
 
 <!-- -->
 
-Before we look at these models, let’s first look at the preparation of data for multi-step
+Before we look at these models, let's first look at the preparation of data for multi-step
 forecasting.
 
 #### Data Preparation
@@ -1409,7 +1409,7 @@ time steps and prints the input and output components of each.
 
 ```
 
-Now that we know how to prepare data for multi-step forecasting, let’s
+Now that we know how to prepare data for multi-step forecasting, let's
 look at some LSTM
 models that can learn this mapping.
 
@@ -1423,7 +1423,7 @@ one time step of each output time series was forecasted as a vector. As
 with the LSTMs for
 univariate data in a prior section, the prepared samples must first be
 reshaped. The LSTM
-expects data to have a three-dimensional structure of[samples,
+expects data to have a three-dimensional structure of [samples,
 timesteps, features], and
 in this case, we only have one feature so the reshape is
 straightforward.
@@ -1549,16 +1549,14 @@ running the example a few times.
 
 A model specifically developed for forecasting variable length output
 sequences is called the
-
 Encoder-Decoder LSTM. The model was designed for prediction problems where there are
 both input and output sequences, so-called sequence-to-sequence, or seq2seq problems, such
 as translating text from one language to another. This model can be used for multi-step time
 series forecasting. As its name suggests, the model is comprised of two sub-models: the encoder
 and the decoder.
 
-
 The encoder is a model responsible for reading and interpreting the input sequence. The
-output of the encoder is a fixed length vector that represents the model’s interpretation of the
+output of the encoder is a fixed length vector that represents the model' s interpretation of the
 sequence. The encoder is traditionally a Vanilla LSTM model, although other encoder models
 can be used such as Stacked, Bidirectional, and CNN models.
 
@@ -1575,6 +1573,7 @@ the encoder is repeated, once for each required time step in the output sequence
 model.add(RepeatVector(n_steps_out))
 
 ```
+
 This sequence is then provided to an LSTM decoder model. The model must output a value
 for each value in the output time step, which can be interpreted by a single output model.
 
@@ -1607,7 +1606,7 @@ model.compile(optimizer='adam', loss='mse')
 ```
 
 As with other LSTM models, the input data must be reshaped into the expected three-
-dimensional shape of[samples, timesteps, features].
+dimensional shape of [samples, timesteps, features].
 
 ```
 # reshape input training data
@@ -2163,8 +2162,59 @@ results may vary. Consider running the example a few times.
 
 ```
 
-For an example of LSTM models developed for a multivariate multi-step time series forecasting
-problem, see Chapter 20.
+##### Run Notebook
+Click notebook `01_univariate_dataset.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `02_vanilla_lstm_univariate.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `03_stacked_lstm_univariate.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `04_bidirectional_lstm_univariate.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `05_cnn_lstm_univariate.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `06_convlstm_univariate.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `07_dependent_series_dataset.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `08_dependent_series_to_samples.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `09_vanilla_lstm_multivariate_dependent_series.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `10_multivariate_parallel_series_dataset.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `11_stacked_lstm_multivariate_parallel_series.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `12_multi_step_series_dataset.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `13_stacked_lstm_multi_step.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `14_encoder_decoder_lstm_multi_step.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `15_multivariate_dependent_series_multi_step_dataset.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `16_stacked_lstm_dependent_multi_step.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `17_multivariate_parallel_series_multi_step_dataset.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `18_encoder_decoder_lstm_parallel_multi_step.ipynb` in jupterLab UI and run jupyter notebook.
 
 ### Extensions
 
@@ -2180,48 +2230,6 @@ dataset.
 - Develop Framework. Use the examples in this chapter as the basis for a framework for
 automatically developing an LSTM model for a given time series forecasting problem.
 
-
-### Further Reading
-
-This section provides more resources on the topic if you are looking to
-go deeper.
-
-#### Papers
-
-- Long Short-Term Memory, 1997.
-https://ieeexplore.ieee.org/document/6795963/.
-
-- Learning to Forget: Continual Prediction with LSTM, 1999.
-https://ieeexplore.ieee.org/document/818041/
-
-- Recurrent Nets that Time and Count, 2000.
-https://ieeexplore.ieee.org/document/861302/
-
-- LSTM: A Search Space Odyssey, 2017.
-https://arxiv.org/abs/1503.04069
-
-- Convolutional LSTM Network: A Machine Learning Approach for Precipitation Nowcasting,
-2015. https://arxiv.org/abs/1506.04214v1
-
-#### APIs
-
-- Keras: The Python Deep Learning library.
-https://keras.io/
-
-- Getting started with the Keras Sequential model.
-https://keras.io/getting-started/sequential-model-guide/
-
-- Getting started with the Keras functional API.
-https://keras.io/getting-started/functional-api-guide/
-
-- Keras Sequential Model API.
-https://keras.io/models/sequential/
-
-- Keras Core Layers API.
-https://keras.io/layers/core/
-
-- Keras Recurrent Layers API.
-https://keras.io/layers/recurrent/
 
 ### Summary
 

@@ -24,7 +24,7 @@ data.
 - How to develop a multi-headed multi-step time series forecasting model for multivariate
 data.
 
-Let’s get started.
+Let' s get started.
 
 #### Tutorial Overview
 
@@ -164,7 +164,7 @@ CNNs can be used in either a recursive or direct forecast strategy, where the mo
 one-step predictions and outputs are fed as inputs for subsequent predictions, and where one
 model is developed for each time step to be predicted. Alternately, CNNs can be used to predict
 the entire output sequence as a one-step prediction of the entire vector. This is a general benefit
-of feedforward neural networks. An important secondary benefit of using CNNs is that they
+of feed forward neural networks. An important secondary benefit of using CNNs is that they
 can support multiple 1D inputs in order to make a prediction. This is useful if the multi-step
 output sequence is a function of more than one input sequence. This can be achieved using two
 different model configurations.
@@ -424,7 +424,7 @@ return yhat
 
 ```
 
-That’s it; we now have everything we need to make multi-step time series forecasts with
+That' s it; we now have everything we need to make multi-step time series forecasts with
 a CNN model on the daily total power consumed univariate dataset. We can
 tie all of this together. The complete example is listed below.
 
@@ -1012,7 +1012,7 @@ problem, you can comment out this line.
 
 Next, we can update the preparation of input samples when making a prediction for the
 test dataset. We must perform the same change, where an input array
-of[1, 14, 8] must be transformed into a list of eight 3D arrays each with[1, 14, 1].
+of [1, 14, 8] must be transformed into a list of eight 3D arrays each with[1, 14, 1].
 
 ```
 
@@ -1041,7 +1041,7 @@ return yhat
 
 ```
 
-That’s it. We can tie all of this together; the complete example is
+That' s it. We can tie all of this together; the complete example is
 listed below.
 
 ```
@@ -1223,6 +1223,15 @@ results may be useful when combined with another forecast model. It may be inter
 explore alternate methods in the architecture for merging the output of each submodel.
 
 ![](./images/409-33.png)
+
+##### Run Notebook
+Click notebook `01_cnn_univariate_model.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `02_multichannel_cnn.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `03_multiheaded_cnn.ipynb` in jupterLab UI and run jupyter notebook.
 
 #### Extensions
 

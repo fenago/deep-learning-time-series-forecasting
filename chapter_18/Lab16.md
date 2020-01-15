@@ -21,7 +21,7 @@ autoregression model.
 - How to develop and evaluate an autocorrelation model used to make
 one-week forecasts.
 
-Let’s get started.
+Let' s get started.
 
 #### Tutorial Overview
 
@@ -82,8 +82,8 @@ evaluating forecasts for this dataset.
 
 Statistical correlation summarizes the strength of the relationship between two variables. We
 can assume the distribution of each variable fits a Gaussian (bell curve) distribution. If this is
-the case, we can use the Pearson’s correlation coefficient to summarize the correlation between
-the variables. The Pearson’s correlation coefficient is a number between -1 and 1 that describes
+the case, we can use the Pearson' s correlation coefficient to summarize the correlation between
+the variables. The Pearson' s correlation coefficient is a number between -1 and 1 that describes
 a negative or positive correlation respectively. A value of zero indicates no correlation.
 
 
@@ -478,27 +478,14 @@ instead of an ARIMA model.
 whether standardization or normalization or even power transforms can further improve
 the skill of the AR model.
 
+##### Run Notebook
+Click notebook `01_acf_pacf_plots.ipynb` in jupterLab UI and run jupyter notebook.
 
-#### Further Reading
+##### Run Notebook
+Click notebook `02_acf_pacf_plots_zoomed.ipynb` in jupterLab UI and run jupyter notebook.
 
-This section provides more resources on the topic if you are looking to
-go deeper.
-
-- statsmodels.graphics.tsaplots.plotacfAPI.
-http://www.statsmodels.org/dev/generated/statsmodels.graphics.tsaplots.plot_
-acf.html
-
-- statsmodels.graphics.tsaplots.plotpacfAPI.
-http://www.statsmodels.org/dev/generated/statsmodels.graphics.tsaplots.plot_
-pacf.html
-
-- statsmodels.tsa.arimamodel.ARIMAAPI.
-http://www.statsmodels.org/dev/generated/statsmodels.tsa.arima_model.ARIMA.
-html
-
-- statsmodels.tsa.arimamodel.ARIMAResultsAPI.
-http://www.statsmodels.org/dev/generated/statsmodels.tsa.arima_model.ARIMAResults.
-html
+##### Run Notebook
+Click notebook `03_arima_model.ipynb` in jupterLab UI and run jupyter notebook.
 
 #### Summary
 

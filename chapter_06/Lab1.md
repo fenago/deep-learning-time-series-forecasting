@@ -3,8 +3,7 @@
 
 ### How to Prepare Time Series Data for CNNs and LSTMs
 
-Time series data must be transformed before it can be used to fit a
-supervised learning model.
+Time series data must be transformed before it can be used to fit a supervised learning model.
 In this form, the data can be used immediately to fit a supervised machine learning algorithm
 and even a Multilayer Perceptron neural network. One further transformation is required in
 order to ready the data for fitting a Convolutional Neural Network (CNN) or Long Short-Term
@@ -24,7 +23,7 @@ suitable for CNNs and LSTMs.
 - How to step through a worked example of splitting a very long time series into subsequences
 ready for training a CNN or LSTM model.
 
-Let’s get started.
+Let' s get started.
 
 ### Overview
 
@@ -36,11 +35,8 @@ This tutorial is divided into four parts, they are:
 
 ### Time Series to Supervised
 
-Time series data requires preparation before it can be used to train a
-supervised learning model,
-
+Time series data requires preparation before it can be used to train a supervised learning model,
 such as an LSTM neural network. For example, a univariate time series is represented as a
-
 vector of observations:
 
 ```
@@ -48,9 +44,8 @@ vector of observations:
 ```
 
 A supervised learning algorithm requires that data is provided as a collection of samples,
+where each sample has an input component (X) and an output component (y).
 
-where each sample has an input component (X) and an output component
-(y).
 
 ```
 X, y
@@ -58,12 +53,15 @@ sample input, sample output
 sample input, sample output
 sample input, sample output
 ...
+
 ```
 
-The model will learn how to map inputs to outputs from the provided
-examples.
+The model will learn how to map inputs to outputs from the provided examples.
 
-y=f(X) (6.1)
+```
+y = f(X) (6.1)
+
+```
 
 A time series must be transformed into samples with input and output components. The
 transform both informs what the model will learn and how you intend to use the model in
@@ -80,17 +78,16 @@ X, y
 [2, 3, 4], [5]
 [3, 4, 5], [6]
 ...
+
 ```
 
 For more on transforming your time series data into a supervised learning problem in general
 see Chapter 4. You can write code to perform this transform yourself and that is the general
 approach I teach and recommend for greater understanding of your data and control over the
-transformation process. The splitsequence() function below implements this behavior and
-
-will split a given univariate sequence into multiple samples where each
-sample has a specified
-
+transformation process. The split sequence() function below implements this behavior and
+will split a given univariate sequence into multiple samples where each sample has a specified
 number of time steps and the output is a single time step.
+
 
 ```
 # split a univariate sequence into samples
@@ -136,10 +133,7 @@ x1, x2, x3, y
 The dataset will be represented in Python using a NumPy array. The array will have two
 dimensions. The length of each dimension is referred to as the shape of the array. For example,
 a time series with 3 inputs, 1 output will be transformed into a supervised learning problem
-
-with 4 columns, or really 3 columns for the input data and 1 for the
-output data. If we have 7
-
+with 4 columns, or really 3 columns for the input data and 1 for the output data. If we have 7
 rows and 3 columns for the input data then the shape of the dataset would be [7, 3], or 7
 samples and 3 features. We can make this concrete by transforming our small contrived dataset.
 
@@ -170,29 +164,17 @@ print(X[i], y[i])
 ```
 
 Running the example first prints the shape of the time series, in this case 10 time steps
-
-of observations. Next, the series is split into input and output
-components for a supervised
-
-learning problem. We can see that for the chosen representation that we
-have 7 samples for the
-
-input and output and 3 input features. The shape of the output is 7
-samples represented as(7,)
-
-indicating that the array is a single column. It could also be
-represented as a two-dimensional
-
-array with 7 rows and 1 column[7, 1]. Finally , the input and output
-aspects of each sample
-
+of observations. Next, the series is split into input and output components for a supervised
+learning problem. We can see that for the chosen representation that we have 7 samples for the
+input and output and 3 input features. The shape of the output is 7 samples represented as (7,)
+indicating that the array is a single column. It could also be represented as a two-dimensional
+array with 7 rows and 1 column [7, 1]. Finally , the input and output aspects of each sample
 are printed, showing the expected breakdown of the problem.
+
 
 ```
 (10,)
-
 (7, 3) (7,)
-
 [1 2 3] 4
 [2 3 4] 5
 [3 4 5] 6
@@ -203,45 +185,24 @@ are printed, showing the expected breakdown of the problem.
 
 ```
 
-Data in this form can be used directly to train a simple neural network,
-such as a Multilayer
-
-Perceptron. The difficulty for beginners comes when trying to prepare
-this data for CNNs and
-
-LSTMs that require data to have a three-dimensional structure instead of
-the two-dimensional
-
+Data in this form can be used directly to train a simple neural network, such as a Multilayer
+Perceptron. The difficulty for beginners comes when trying to prepare this data for CNNs and
+LSTMs that require data to have a three-dimensional structure instead of the two-dimensional
 structure described so far.
 
-### Data Preparation Basics
-
-Preparing time series data for CNNs and LSTMs requires one additional
-step beyond transforming
-
-the data into a supervised learning problem. This one additional step
-causes the most confusion
-
-for beginners. In this section we will slowly step through the basics of
-how and why we need to
-
-prepare three-dimensional data for CNNs and LSTMs before working through
-an example in
-
+#### 3D Data Preparation Basics
+Preparing time series data for CNNs and LSTMs requires one additional step beyond transforming
+the data into a supervised learning problem. This one additional step causes the most confusion
+for beginners. In this section we will slowly step through the basics of how and why we need to
+prepare three-dimensional data for CNNs and LSTMs before working through an example in
 the next section.
 
-The input layer for CNN and LSTM models is specified by
-the input shape argument on
+The input layer for CNN and LSTM models is specified by the input shape argument on
+the first hidden layer of the network. This too can make things confusing for beginners as
+intuitively we may expect the first layer defined in the model be the input layer, not the first
+hidden layer. For example, below is an example of a network with one hidden LSTM layer and
+one Dense output layer.
 
-the first hidden layer of the network. This too can make things
-confusing for beginners as
-
-intuitively we may expect the first layer defined in the model be the
-input layer, not the first
-hidden layer. For example, below is an example of a network with one
-hiddenLSTMlayer and
-
-oneDenseoutput layer.
 
 ```
 # lstm without an input layer
@@ -252,64 +213,33 @@ model.add(Dense(1))
 
 ```
 
-In this example, theLSTM()layer must specify the shape of the input
-data. The input to
+In this example, the LSTM() layer must specify the shape of the input data. The input to
+every CNN and LSTM layer must be three-dimensional. The three dimensions of this input are:
 
-every CNN and LSTM layer must be three-dimensional. The three dimensions
-of this input are:
-
-- Samples. One sequence is one sample. A batch is comprised of one or
-more samples.
-
+- Samples. One sequence is one sample. A batch is comprised of one or more samples.
 - Time Steps. One time step is one point of observation in the sample. One sample is
 comprised of multiple time steps.
-
 - Features. One feature is one observation at a time step. One time step is comprised of
 one or more features.
 
-This expected three-dimensional structure of input data is often
-summarized using the array
-
-shape notation of:[samples, timesteps, features]. Remember, that the
-two-dimensional
-
-shape of a dataset that we are familiar with from the previous section
-has the array shape of:
-
-[samples, features]. this means we are adding the new dimension oftime
-steps. Except, in
-
-time series forecasting problems our features are observations at time
-steps. So, really, we are
-
-adding the dimension offeatures, where a univariate time series has only
-one feature.
-
+This expected three-dimensional structure of input data is often summarized using the array
+shape notation of: [samples, timesteps, features]. Remember, that the two-dimensional
+shape of a dataset that we are familiar with from the previous section has the array shape of:
+[samples, features]. this means we are adding the new dimension of time steps. Except, in
+time series forecasting problems our features are observations at time steps. So, really, we are
+adding the dimension of features, where a univariate time series has only one feature.
 When defining the input layer of your LSTM network, the network assumes you have one
-
-or more samples and requires that you specify the number of time steps
-and the number of
-
-features. You can do this by specifying a tuple to
-the input shape argument. For example, the
-
-model below defines an input layer that expects 1 or more samples, 3
-time steps, and 1 feature.
-
-Remember, the first layer in the network is actually the first hidden
-layer, so in this example 32
-
-refers to the number of units in the first hidden layer. The number of
-units in the first hidden
-
-layer is completely unrelated to the number of samples, time steps or
-features in your input
-
+or more samples and requires that you specify the number of time steps and the number of
+features. You can do this by specifying a tuple to the input shape argument. For example, the
+model below defines an input layer that expects 1 or more samples, 3 time steps, and 1 feature.
+Remember, the first layer in the network is actually the first hidden layer, so in this example 32
+refers to the number of units in the first hidden layer. The number of units in the first hidden
+layer is completely unrelated to the number of samples, time steps or features in your input
 data.
+
 
 ```
 # lstm with an input layer
-
 ...
 model = Sequential()
 model.add(LSTM(32, input_shape=(3, 1)))
@@ -317,67 +247,41 @@ model.add(Dense(1))
 
 ```
 
-This example maps onto our univariate time series from the previous
-section that we split into
-
-having 3 input time steps and 1 feature. We may have loaded our time
-series dataset from CSV
-
-or transformed it to a supervised learning problem in memory. It will
-have a two-dimensional
-
-shape and we must convert it to a three-dimensional shape with some
-number of samples, 3
-
-time steps per sample and 1 feature per time step, or[?, 3, 1]. We can
-do this by using the
-
-reshape()NumPy function. For example, if we have 7 samples and 3 time
-steps per sample for
-
-the input element of our time series, we can reshape it into[7, 3, 1]by
-providing a tuple to
-
-
-thereshape() function specifying the desired new shape of(7, 3, 1). The
-array must have
-
-enough data to support the new shape, which in this case it does as[7,
-3]and[7, 3, 1]are
-
+This example maps onto our univariate time series from the previous section that we split into
+having 3 input time steps and 1 feature. We may have loaded our time series dataset from CSV
+or transformed it to a supervised learning problem in memory. It will have a two-dimensional
+shape and we must convert it to a three-dimensional shape with some number of samples, 3
+time steps per sample and 1 feature per time step, or [?, 3, 1]. We can do this by using the
+reshape() NumPy function. For example, if we have 7 samples and 3 time steps per sample for
+the input element of our time series, we can reshape it into [7, 3, 1] by providing a tuple to
+the reshape() function specifying the desired new shape of (7, 3, 1). The array must have
+enough data to support the new shape, which in this case it does as [7, 3] and [7, 3, 1] are
 functionally the same thing.
+
 
 ```
 ...
+# transform input from [samples, features] to [samples, timesteps, features]
 X = X.reshape((7, 3, 1))
 
 ```
 
-A short-cut in reshaping the array is to use the known shapes, such as
-the number of samples
-
-and the number of times steps from the array returned from the call to
-theX.shapeproperty of
-
-the array. For example,X.shape[0]refers to the number of rows in a 2D
-array, in this case the
-
-number of samples andX.shape[1]refers to the number of columns in a 2D
-array, in this case
-
-the number of feature that we will use as the number of time steps. The
-reshape can therefore
-
+A short-cut in reshaping the array is to use the known shapes, such as the number of samples
+and the number of times steps from the array returned from the call to the X.shape property of
+the array. For example, X.shape[0] refers to the number of rows in a 2D array, in this case the
+number of samples and X.shape[1] refers to the number of columns in a 2D array, in this case
+the number of feature that we will use as the number of time steps. The reshape can therefore
 be written as:
+
 
 ```
 ...
+# transform input from [samples, features] to [samples, timesteps, features]
 X = X.reshape((X.shape[0], X.shape[1], 1))
 
 ```
 
 We can make this concept concrete with a worked example. The complete code listing is
-
 provided below.
 
 ```
@@ -399,6 +303,7 @@ print(X.shape, y.shape)
 X = X.reshape((X.shape[0], X.shape[1], 1))
 print(X.shape)
 ```
+
 Running the example first prints the shape of the univariate time series, in this case 10
 time steps. It then summarizes the shape if the input (X) and output (y) elements of each
 sample after the univariate series has been converted into a supervised learning problem, in
@@ -406,6 +311,7 @@ this case, the data has 7 samples and the input data has 3 features per sample, 
 know are actually time steps. Finally, the input element of each sample is reshaped to be
 three-dimensional suitable for fitting an LSTM or CNN and now has the shape[7, 3, 1]or 7
 samples, 3 time steps, 1 feature.
+
 ```
 (10,)
 (7, 3) (7,)
@@ -427,7 +333,7 @@ There are few problems here:
 - Data Shape. LSTMs expect 3D input, and it can be challenging to get your head around
 this the first time.
 
-- Sequence Length. LSTMs don’t like sequences of more than 200-400 time steps, so the
+- Sequence Length. LSTMs don' t like sequences of more than 200-400 time steps, so the
 data will need to be split into subsamples.
 
 We will work through this example, broken down into the following 4
@@ -467,7 +373,6 @@ print(data.shape)
 
 Running this piece both prints the first 5 rows of data and the shape of
 the loaded data. We
-
 can see we have 5,000 rows and 2 columns: a standard univariate time
 series dataset.
 
@@ -482,15 +387,9 @@ series dataset.
 
 ```
 
-If your time series data is uniform over time and there is no missing
-values, we can drop the
-
-time column. If not, you may want to look at imputing the missing
-values, resampling the data
-
-to a new time scale, or developing a model that can handle missing
-values. Here, we just drop
-
+If your time series data is uniform over time and there is no missing values, we can drop the
+time column. If not, you may want to look at imputing the missing values, resampling the data
+to a new time scale, or developing a model that can handle missing values. Here, we just drop
 the first column:
 
 ```
@@ -520,10 +419,8 @@ LSTMs need to process samples where each sample is a single sequence of observat
 case, 5,000 time steps is too long; LSTMs work better with 200-to-400 time steps. Therefore, we
 need to split the 5,000 time steps into multiple shorter sub-sequences. There are many ways to
 do this, and you may want to explore some depending on your problem. For example, perhaps
-
 you need overlapping sequences, perhaps non-overlapping is good but your
 model needs state
-
 across the sub-sequences and so on. In this example, we will split the 5,000 time steps into 25
 sub-sequences of 200 time steps each. Rather than using NumPy or Python tricks, we will do
 this the old fashioned way so you can see what is going on.
@@ -560,7 +457,7 @@ We now have 25 subsequences of 200 time steps each.
 
 ```
 
-The LSTM needs data with the format of[samples, timesteps, features]. We
+The LSTM needs data with the format of [samples, timesteps, features]. We
 have 25
 samples, 200 time steps per sample, and 1 feature. First, we need to convert our list of arrays
 into a 2D NumPy array with the shape[25, 200].
@@ -576,8 +473,6 @@ n = 5000
 for i in range(n):
 data.append([i+1, (i+1)*10])
 data = array(data)
-
-```
 data = data[:, 1]
 samples = list()
 length = 200
@@ -628,6 +523,27 @@ model, or even a CNN model.
 ```
 (25, 200, 1)
 ```
+
+##### Run Notebook
+Click notebook `01_time_series_to_supervised.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `02_transform_univariate_2d_3d.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `03_example_load_data.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `04_example_drop_time.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `05_example_split_subsequences.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `06_example_create_array.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `07_example_reshape_3d.ipynb` in jupterLab UI and run jupyter notebook.
 
 ### Extensions
 

@@ -21,7 +21,7 @@ passengers univariate time series forecasting problem.
 - How to adapt the framework to grid search hyperparameters for convolutional and long
 short-term memory neural networks.
 
-Let’s get started.
+Let' s get started.
 
 ### Tutorial Overview
 
@@ -41,7 +41,7 @@ development of a grid searching framework for range of deep learning
 models for univariate
 time series forecasting. We will use themonthly airline passengerdataset
 as this context as it
-includes the complexity of both trend and seasonal elements. Themonthly
+includes the complexity of both trend and seasonal elements. The monthly
 airline passenger
 dataset summarizes the monthly total number of international passengers
 in thousands on for
@@ -145,7 +145,7 @@ duplicated here given the changes needed to adapt it for grid searching model hy
 The first step is to split the loaded series into train and test sets.
 We will use the first 11
 years (132 observations) for training and the last 12 for the test set.
-The traintestsplit() function below will split the series taking the raw observations and the number of observations
+The train_test_split() function below will split the series taking the raw observations and the number of observations
 to use in the test set as arguments.
 
 
@@ -172,7 +172,7 @@ function on the PandasDataFrame. It allows us to shift a column down (forward in
 back (backward in time). We can take the series as a column of data, then create multiple copies
 of the column, shifted forward or backward in time in order to create the samples with the
 input and output elements we require. When a series is shifted down,NaNvalues are introduced
-because we don’t have values beyond the start of the series.
+because we don' t have values beyond the start of the series.
 
 
 ```
@@ -237,7 +237,7 @@ the model. Simpler models can be refit with the observation prior to making the 
 prediction. More complex models, such as neural networks, are not refit given the much greater
 computational cost. Nevertheless, the true observation for the time step can then be used as
 part of the input for making the prediction on the next time step.
-First, the dataset is split into train and test sets. We will call thetraintestsplit()
+First, the dataset is split into train and test sets. We will call thetrain_test_split()
 function to perform this split and pass in the pre-specified number of observations to use as the
 test data. A model will be fit once on the training dataset for a given configuration. We will
 define a genericmodelfit() function to perform this operation that can be filled in for the
@@ -845,7 +845,7 @@ and evaluated using walk-forward validation to calculate an RMSE score before an
 those 10 scores is reported and used to score the configuration. The scores are then sorted
 and the top 3 configurations with the lowest RMSE are reported at the end. A skillful model
 configuration was found as compared to a naive model that reported an RMSE of 50.70. We
-can see that the best RMSE of 18.98 was achieved with a configuration of[12, 100, 100, 1, 12], which we know can be interpreted as:
+can see that the best RMSE of 18.98 was achieved with a configuration of [12, 100, 100, 1, 12], which we know can be interpreted as:
 
 - **ninput:** 12
 
@@ -1182,7 +1182,7 @@ print(cfg, error)
 
 Running the example, we can see that only eight distinct configurations
 are evaluated. We
-can see that a configuration of[12, 64, 5, 100, 1, 12]achieved an RMSE
+can see that a configuration of [12, 64, 5, 100, 1, 12]achieved an RMSE
 of 18.89, which
 is skillful as compared to a naive forecast model that achieved 50.70.
 We can unpack this configuration as:
@@ -1507,7 +1507,7 @@ print(cfg, error)
 ```
 
 Running the example, we can see that only two distinct configurations are evaluated. We
-can see that a configuration of[12, 100, 50, 1, 12]achieved an RMSE of
+can see that a configuration of [12, 100, 50, 1, 12]achieved an RMSE of
 21.24, which is
 skillful as compared to a naive forecast model that achieved 50.70. The
 model requires a lot
@@ -1548,6 +1548,21 @@ done
 [12, 100, 50, 150, 12] 21.259553398553606
 
 ```
+
+##### Run Notebook
+Click notebook `01_load_dataset.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `02_grid_search_persistence.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `03_grid_search_mlp.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `04_grid_search_cnn.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `05_grid_search_lstm.ipynb` in jupterLab UI and run jupyter notebook.
 
 ### Extensions
 

@@ -20,7 +20,7 @@ test harness for evaluating forecasting models.
 - How to develop and evaluate and compare the performance a suite of naive persistence
 forecasting methods.
 
-Let’s get started.
+Let' s get started.
 
 #### Tutorial Overview
 
@@ -82,7 +82,7 @@ infer_datetime_format=True, parse_dates={'datetime':[0,1]}, index_col=['datetime
 
 ```
 
-Next, we can mark all missing values indicated with a‘?’character with a NaN value, which
+Next, we can mark all missing values indicated with a '?' character with a NaN value, which
 is a float. This will allow us to work with the data as one array of floating point values rather
 than mixed types (less efficient.)
 
@@ -205,7 +205,7 @@ This framing of the dataset also suggests that it would be useful to
 downsample the per-minute
 observations of power consumption to daily totals. This is not required, but makes sense, given
 that we are interested in total power per day. We can achieve this easily using theresample()
-function on the PandasDataFrame. Calling this function with the argument‘D’allows the
+function on the PandasDataFrame. Calling this function with the argument 'D' allows the
 loaded data indexed by date-time to be grouped by day (see all offset aliases). We can then
 calculate the sum of all observations for each day and create a new dataset of daily power
 consumption data for each of the eight variables. The complete example is listed below.
@@ -495,7 +495,7 @@ return forecast
 Another good naive forecast when forecasting a standard week is to use
 the entire prior week
 as the forecast for the week ahead. It is based on the idea that next week will be very similar
-to this week. Theweeklypersistence() function below implements the weekly persistence
+to this week. The weeklypersistence() function below implements the weekly persistence
 forecast strategy.
 
 ```
@@ -701,6 +701,19 @@ more relevant. Reviewing all strategies on the same plot suggests possible combi
 strategies that may result in even better performance.
 
 ![](./images/371-25.png)
+
+
+##### Run Notebook
+Click notebook `01_prepare_data.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `02_resample_dataset.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `03_train_test_split.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `04_naive_forecasts.ipynb` in jupterLab UI and run jupyter notebook.
 
 #### Extensions
 

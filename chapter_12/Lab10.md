@@ -24,7 +24,7 @@ births.
 - How to grid search ETS model hyperparameters for monthly time series data for shampoo
 sales, car sales, and temperature.
 
-Let’s get started.
+Let' s get started.
 
 ### Tutorial Overview
 
@@ -131,7 +131,7 @@ return error
 
 ```
 
-We’re nearly done. The only thing left to do is to define a list of model configurations to try
+We' re nearly done. The only thing left to do is to define a list of model configurations to try
 for a dataset. We can define this generically. The only parameter we may want to specify is the
 periodicity of the seasonal component in the series, if one exists. By default, we will assume no
 seasonal component. The expsmoothingconfigs() function below will create a list of model
@@ -327,7 +327,7 @@ print(model_fit.params)
 
 ```
 
-Now that we have a robust framework for grid searching ETS model hyperparameters, let’s
+Now that we have a robust framework for grid searching ETS model hyperparameters, let's
 test it out on a suite of standard univariate time series datasets. The datasets were chosen for
 demonstration purposes; I am not suggesting that an ETS model is the best approach for each
 dataset, and perhaps an SARIMA or something else would be more appropriate in some cases.
@@ -521,12 +521,12 @@ problem. We can unpack the configuration of the best performing model as follows
 - Remove Bias: True
 
 What is surprising is that a model that assumed an multiplicative trend performed better
-than one that didn’t. We would not know that this is the case unless we threw out assumptions
+than one that didn' t. We would not know that this is the case unless we threw out assumptions
 and grid searched models.
 
 ### Case Study 2: Trend
 
-Themonthly shampoo salesdataset summarizes the monthly sales of shampoo
+The monthly shampoo salesdataset summarizes the monthly sales of shampoo
 over a three-year
 period. For more information on this dataset, see Chapter 11 where it was introduced. You can
 download the dataset directly from here:
@@ -715,7 +715,7 @@ model as follows:
 
 ### Case Study 3: Seasonality
 
-Themonthly mean temperaturesdataset summarizes the monthly average air
+The monthly mean temperaturesdataset summarizes the monthly average air
 temperatures in
 Nottingham Castle, England from 1920 to 1939 in degrees Fahrenheit. For more information on
 this dataset, see Chapter 11 where it was introduced. You can download the dataset directly
@@ -929,7 +929,7 @@ of being unskillful. We can unpack the configuration of the best performing mode
 
 ### Case Study 4: Trend and Seasonality
 
-Themonthly car salesdataset summarizes the monthly car sales in Quebec,
+The monthly car salesdataset summarizes the monthly car sales in Quebec,
 Canada between
 
 where it was introduced.
@@ -1085,13 +1085,10 @@ print(cfg, error)
 
 Running the example is slow given the large amount of data. Model
 configurations and the
-
 RMSE are printed as the models are evaluated. The top three model
 configurations and their
-
 error are reported at the end of the run. A truncated example of the
 results from running the
-
 hyperparameter grid search are listed below.
 
 **Note:** Given the stochastic nature of the algorithm, your specific
@@ -1121,7 +1118,6 @@ an RMSE of 1841.15 sales on this problem, suggesting that the best
 performing ETS model is skillful. We can unpack the configuration of the best performing model
 as follows:
 
-
 - Trend: Additive
 
 - Damped: False
@@ -1136,6 +1132,21 @@ as follows:
 
 This is a little surprising as I would have guessed that a six-month seasonal model would be
 the preferred approach.
+
+##### Run Notebook
+Click notebook `01_grid_search.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `02_grid_search_daily_births.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `03_grid_search_monthly_shampoo_sales.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `04_grid_search_monthly_mean_temp.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `05_grid_search_monthly_car_sales.ipynb` in jupterLab UI and run jupyter notebook.
 
 ### Extensions
 

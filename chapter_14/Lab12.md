@@ -5,14 +5,12 @@
 
 Deep learning neural networks are capable of automatically learning and extracting features
 from raw data. This feature of neural networks can be used for time series forecasting problems,
-
-where models can be developed directly on the raw observations without
-the direct need to scale
-
+where models can be developed directly on the raw observations without the direct need to scale
 the data using normalization and standardization or to make the data stationary by differencing.
 Impressively, simple deep learning neural network models are capable of making skillful forecasts
 as compared to naive models and tuned SARIMA models on univariate time series forecasting
 problems that have both trend and seasonal components with no pre-processing.
+
 In this tutorial, you will discover how to develop a suite of deep learning models for univariate
 time series forecasting. After completing this tutorial, you will know:
 
@@ -25,7 +23,7 @@ networks for time series forecasting.
 - How to develop and evaluate LSTMs, CNN-LSTMs, and ConvLSTM neural network
 models for time series forecasting.
 
-Let’s get started.
+Let' s get started.
 
 ### Tutorial Overview
 
@@ -42,75 +40,54 @@ This tutorial is divided into five parts; they are:
 In this tutorial we will focus on one dataset and use it as the context to demonstrate the
 development of a range of deep learning models for univariate time series forecasting. We will
 use themonthly car salesdataset as this context as it includes the complexity of both trend and
-seasonal elements. Themonthly car salesdataset summarizes the monthly car sales in Quebec,
+seasonal elements. The monthly car salesdataset summarizes the monthly car sales in Quebec,
 Canada between 1960 and 1968. For more information on this dataset, see Chapter 11 where it
-
 was introduced. You can download the dataset directly from here:
 
 - monthly-car-sales.csv^1
 
-Save the file with the filename `monthly-car-sales.csv` in your current
-working directory.
-
-The dataset is monthly and has nine years, or 108 observations. In our
-testing, will use the
-
+Save the file with the filename monthly-car-sales.csv in your current working directory.
+The dataset is monthly and has nine years, or 108 observations. In our testing, will use the
 last year, or 12 observations, as the test set. A line plot is created. The dataset has an obvious
 trend and seasonal component. The period of the seasonal component could be six months or 12
 months. From prior experiments, we know that a naive model can achieve a root mean squared
 error, or RMSE, of 1,841.155 by taking the median of the observations at the three prior years
 for the month being predicted (see Chapter 11); for example:
 
-yhat = median(-12, -24, -36)
-
 ```
+yhat = median(-12, -24, -36)
+```
+
 Where the negative indexes refer to observations in the series relative to the end of the
 historical data for the month being predicted. From prior experiments, we know that a SARIMA
-model can achieve an RMSE of 1,551.84 with the configuration ofSARIMA(0, 0, 0),(1, 1,
-0),12where no elements are specified for the trend and a seasonal difference with a period of
-
-12 is calculated and an AR model of one season is used (see Chapter 13).
+model can achieve an RMSE of 1,551.84 with the configuration of SARIMA(0, 0, 0),(1, 1,
+0),12 where no elements are specified for the trend and a seasonal difference with a period of
+12 is calculated and an AR model of one season is used.
 
 The performance of the naive model provides a lower bound on a model that is considered
 skillful. Any model that achieves a predictive performance of lower than 1,841.15 on the last
-
-12 months has skill. The performance of the SARIMA model provides a
-measure of a good
-
+12 months has skill. The performance of the SARIMA model provides a measure of a good
 model on the problem. Any model that achieves a predictive performance lower than 1,551.84
 on the last 12 months should be adopted over a SARIMA model. Now that we have defined our
 problem and expectations of model skill, we can look at defining the test harness.
 
-### Model Evaluation Test Harness
 
+### Model Evaluation Test Harness
 In this section, we will develop a test harness for developing and evaluating different types of
 neural network models for univariate time series forecasting. This test harness is a modified
-
-version of the framework presented in Chapter 11 and may cover much of
-the same of the same
-
+version of the framework presented in Chapter 11 and may cover much of the same of the same
 ground. This section is divided into the following parts:
 
 1.  Train-Test Split
 2.  Series as Supervised Learning
 3.  Walk-Forward Validation
-
-(^1)
-https://raw.githubusercontent.com/jbrownlee/Datasets/master/monthly-car-sales.csv
-
-
 4.  Repeat Evaluation
 5.  Summarize Performance
 6.  Worked Example
 
 #### Train-Test Split
-
-The first step is to split the loaded series into train and test sets.
-We will use the first eight
-
-years (96 observations) for training and the last 12 for the test set.
-The traintestsplit()
-
+The first step is to split the loaded series into train and test sets. We will use the first eight
+years (96 observations) for training and the last 12 for the test set. The train test split()
 function below will split the series taking the raw observations and the number of observations
 to use in the test set as arguments.
 
@@ -130,12 +107,15 @@ the model learn from and generalize across. Each sample must have both an input 
 and an output component. The input component will be some number of prior observations,
 such as three years or 36 time steps. The output component will be the total sales in the next
 month because we are interested in developing a model to make one-step forecasts.
-We can implement this using theshift() function on the PandasDataFrame. It allows us
+
+We can implement this using the shift() function on the Pandas DataFrame. It allows us
 to shift a column down (forward in time) or back (backward in time). We can take the series as
 a column of data, then create multiple copies of the column, shifted forward or backward in
 time in order to create the samples with the input and output elements we require. When a
-series is shifted down,NaNvalues are introduced because we don’t have values beyond the start
+series is shifted down, NaN values are introduced because we don’t have values beyond the start
 of the series. For example, the series defined as a column:
+
+```
 (t)
 1
 2
@@ -143,7 +123,11 @@ of the series. For example, the series defined as a column:
 4
 
 ```
+
 Can be shifted and inserted as a column beforehand:
+
+
+```
 (t-1), (t)
 Nan, 1
 1, 2
@@ -162,6 +146,7 @@ number of lag observations to use in the input and the number to use in the outp
 sample. It will also remove rows that haveNaNvalues as they cannot be used to train or test a
 model.
 
+```
 # transform list into supervised learning format
 def series_to_supervised(data, n_in, n_out=1):
 df = DataFrame(data)
@@ -185,25 +170,23 @@ specialized methods presented in Chapters 7, 8, and 9.
 
 #### Walk-Forward Validation
 
-Time series forecasting models can be evaluated on a test set using
-walk-forward validation.
-
-Walk-forward validation is an approach where the model makes a forecast
-for each observation
-
+Time series forecasting models can be evaluated on a test set using walk-forward validation.
+Walk-forward validation is an approach where the model makes a forecast for each observation
 in the test dataset one at a time. After each forecast is made for a time step in the test
 dataset, the true observation for the forecast is added to the test dataset and made available to
 the model. Simpler models can be refit with the observation prior to making the subsequent
 prediction. More complex models, such as neural networks, are not refit given the much greater
 computational cost. Nevertheless, the true observation for the time step can then be used as
 part of the input for making the prediction on the next time step. First, the dataset is split into
-train and test sets. We will call thetraintestsplit() function to perform this split and
+train and test sets. We will call the train test split() function to perform this split and
 pass in the pre-specified number of observations to use as the test data.
+
 A model will be fit once on the training dataset for a given configuration. We will define a
-genericmodelfit() function to perform this operation that can be filled in for the given type
+generic model fit() function to perform this operation that can be filled in for the given type
 of neural network that we may be interested in later. The function takes the training dataset
 and the model configuration and returns the fit model ready for making predictions.
 
+```
 # fit a model
 def model_fit(train, config):
 return None
@@ -249,6 +232,7 @@ The complete walkforwardvalidation() function that ties all of this together is 
 below. It takes the dataset, the number of observations to use as the test set, and the
 configuration for the model, and returns the RMSE for the model performance on the test set.
 
+```
 # walk-forward validation for univariate data
 def walk_forward_validation(data, n_test, cfg):
 predictions = list()
@@ -280,41 +264,33 @@ Neural network models are stochastic. This means that, given the same model conf
 and the same training dataset, a different internal set of weights will result each time the model
 is trained that will in turn have a different performance. This is a benefit, allowing the model to
 be adaptive and find high performing configurations to complex problems. It is also a problem
-
-when evaluating the performance of a model and in choosing a final model
-to use to make
-
+when evaluating the performance of a model and in choosing a final model to use to make
 predictions.
+
 To address model evaluation, we will evaluate a model configuration multiple times via
-
-walk-forward validation and report the error as the average error across
-each evaluation. This is
-
+walk-forward validation and report the error as the average error across each evaluation. This is
 not always possible for large neural networks and may only make sense for small networks that
-can be fit in minutes or hours. Therepeatevaluate() function below implements this and
+can be fit in minutes or hours. The repeat evaluate() function below implements this and
 allows the number of repeats to be specified as an optional parameter that defaults to 30 and
 returns a list of model performance scores: in this case, RMSE values.
 
+```
 # repeat evaluation of a config
 def repeat_evaluate(data, config, n_test, n_repeats=30):
 # fit and evaluate the model n times
 scores = [walk_forward_validation(data, n_test, config) for _ in range(n_repeats)]
 return scores
-
 ```
 
 #### Summarize Performance
-
 Finally, we need to summarize the performance of a model from the multiple repeats. We
-
-will summarize the performance first using summary statistics,
-specifically the mean and the
-
+will summarize the performance first using summary statistics, specifically the mean and the
 standard deviation. We will also plot the distribution of model performance scores using a box
-and whisker plot to help get an idea of the spread of performance. Thesummarizescores()
+and whisker plot to help get an idea of the spread of performance. The summarize scores()
 function below implements this, taking the name of the model that was evaluated and the list
 of scores from each repeated evaluation, printing the summary and showing a plot.
 
+```
 # summarize model performance
 def summarize_scores(name, scores):
 # print a summary
@@ -466,8 +442,7 @@ have a robust test harness, we can use it to evaluate a suite of neural network 
 
 The first network that we will evaluate is a Multilayer Perceptron, or
 MLP for short. This is a
-
-simple feedforward neural network model that should be evaluated before more elaborate models
+simple feed forward neural network model that should be evaluated before more elaborate models
 are considered. MLPs can be used for time series forecasting by taking multiple observations at
 prior time steps, called lag observations, and using them as input features and predicting one or
 more time steps from those observations. This is exactly the framing of the problem provided by
@@ -814,9 +789,9 @@ the required three-dimensional shape of the input data will be [nsamples, ninput
 train_x = train_x.reshape((train_x.shape[0], train_x.shape[1], 1))
 
 ```
+
 The model_fit() function for fitting the CNN model on the training dataset
 is listed below.
-
 The model takes the following five configuration parameters as a list:
 
 - **ninput:** The number of lag observations to use as input to the model.
@@ -1049,10 +1024,8 @@ cnn: 1524.067 RMSE (+/- 57.148)
 
 A box and whisker plot of the scores is created to help understand the spread of error across
 the runs. We can see that the spread does seem to be biased towards larger error values, as we
-
 would expect, although the upper whisker of the plot (in this case, the
 largest error that are not
-
 outliers) is still limited at an RMSE of 1,650 sales.
 
 ![](./images/286-13.png)
@@ -1061,7 +1034,6 @@ outliers) is still limited at an RMSE of 1,650 sales.
 
 Recurrent neural networks, or RNNs, are those types of neural networks that use an output of
 the network from a prior step as an input in attempt to automatically learn across sequence data.
-
 The Long Short-Term Memory, or LSTM, network is a type of RNN whose
 implementation
 addresses the general difficulties in training RNNs on sequence data that results in a stable
@@ -1838,8 +1810,6 @@ from numpy import array
 from numpy import mean
 from numpy import std
 from pandas import DataFrame
-
-
 from pandas import concat
 from pandas import read_csv
 from sklearn.metrics import mean_squared_error
@@ -2009,33 +1979,23 @@ network model as part of walk-forward validation can further improve model perfo
 - More Parameterization. Explore adding further model parameterization for one model,
 such as the use of additional layers.
 
+##### Run Notebook
+Click notebook `01_simple_forecast.ipynb` in jupterLab UI and run jupyter notebook.
 
-### Further Reading
+##### Run Notebook
+Click notebook `02_mlp_forecast_model.ipynb` in jupterLab UI and run jupyter notebook.
 
-This section provides more resources on the topic if you are looking to
-go deeper.
+##### Run Notebook
+Click notebook `03_cnn_forecast_model.ipynb` in jupterLab UI and run jupyter notebook.
 
-- pandas.DataFrame.shiftAPI.
-http://pandas-docs.github.io/pandas-docs-travis/generated/pandas.DataFrame.
-shift.html
+##### Run Notebook
+Click notebook `04_lstm_forecast_model.ipynb` in jupterLab UI and run jupyter notebook.
 
-- matplotlib.pyplot.boxplotAPI.
-https://matplotlib.org/api/_as_gen/matplotlib.pyplot.boxplot.html
+##### Run Notebook
+Click notebook `05_cnn_lstm_forecast_model.ipynb` in jupterLab UI and run jupyter notebook.
 
-- Keras Sequential Model API.
-https://keras.io/models/sequential/
-
-- Keras Core Layers API.
-https://keras.io/layers/core/
-
-- Keras Convolutional Layers API.
-https://keras.io/layers/convolutional/
-
-- Keras Pooling Layers API.
-https://keras.io/layers/pooling/
-
-- Keras Recurrent Layers API.
-https://keras.io/layers/recurrent/
+##### Run Notebook
+Click notebook `06_convlstm_forecast_model.ipynb` in jupterLab UI and run jupyter notebook.
 
 ### Summary
 
@@ -2050,7 +2010,6 @@ networks for time series forecasting.
 
 - How to develop and evaluate LSTMs, CNN-LSTMs, and ConvLSTM neural network
 models for time series forecasting.
-
 
 #### Next
 

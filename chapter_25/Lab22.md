@@ -21,7 +21,7 @@ recognition.
 model.
 - How to develop a one-dimensional Convolutional LSTM, or ConvLSTM, model for the
 same problem.
-Let’s get started.
+Let' s get started.
 
 #### Tutorial Overview
 This tutorial is divided into four parts; they are:
@@ -163,7 +163,7 @@ return trainX, trainy, testX, testy
 Now that we have the data loaded into memory ready for modeling, we can define, fit, and
 evaluate an LSTM model. We can define a function named evaluate model() that takes the
 train and test dataset, fits a model on the training dataset, evaluates it on the test dataset, and
-returns an estimate of the model’s performance. First, we must define the LSTM model using
+returns an estimate of the model' s performance. First, we must define the LSTM model using
 the Keras deep learning library. The model requires a three-dimensional input with [samples,
 timesteps, features].
 
@@ -403,7 +403,7 @@ running the example a few times.
 Accuracy: 89.722% (+/-1.371)
 ```
 
-Now that we have seen how to develop an LSTM model for time series classification, let’s
+Now that we have seen how to develop an LSTM model for time series classification, let's
 look at how we can develop a more sophisticated CNN-LSTM model.
 
 ####  CNN-LSTM Model
@@ -592,7 +592,7 @@ run_experiment()
 ```
 
 Running the example summarizes the model performance for each of the 10 runs before
-a final summary of the model’s performance on the test set is reported. We can see that the
+a final summary of the model' s performance on the test set is reported. We can see that the
 model achieved a performance of about 90.6% with a standard deviation of about 1%.
 **Note:** Given the stochastic nature of the algorithm, your specific results may vary. Consider
 running the example a few times.
@@ -786,14 +786,25 @@ running the example a few times.
 >#8: 91.008
 >#9: 90.499
 >#10: 89.922
+
 [90.09161859518154, 91.61859518154056, 92.12758737699356, 90.53274516457415,
 89.24329826942655, 90.93993892093654, 92.02578893790296, 91.00780454699695,
 90.49881235154395, 89.92195453003053]
+
 Accuracy: 90.801% (+/-0.886)
 ```
 
+##### Run Notebook
+Click notebook `01_lstm_model.ipynb` in jupterLab UI and run jupyter notebook.
 
-####  Extensions
+##### Run Notebook
+Click notebook `02_cnn_lstm_model.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `03_convlstm_model.ipynb` in jupterLab UI and run jupyter notebook.
+
+
+####  Exercises
 This section lists some ideas for extending the tutorial that you may wish to explore.
 - Data Preparation. Consider exploring whether simple data scaling schemes can further
 lift model performance, such as normalization, standardization, and power transforms.

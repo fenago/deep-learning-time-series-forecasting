@@ -22,7 +22,7 @@ series forecasting.
 - How to develop and evaluate a ConvLSTM Encoder-Decoder model for multi-step time
 series forecasting.
 
-Let’s get started.
+Let' s get started.
 
 #### Tutorial Overview
 
@@ -350,7 +350,7 @@ return yhat
 
 ```
 
-That’s it; we now have everything we need to make multi-step time series forecasts with
+That' s it; we now have everything we need to make multi-step time series forecasts with
 an LSTM model on the daily total power consumed univariate dataset. We
 can tie all of this
 together. The complete example is listed below.
@@ -561,7 +561,7 @@ The difference is subtle, as in practice both approaches do in fact predict a se
 The important difference is that an LSTM model is used in the decoder,
 allowing it to both
 know what was predicted for the prior day in the sequence and accumulate internal state while
-outputting the sequence. Let’s take a closer look at how this model is defined.
+outputting the sequence. Let' s take a closer look at how this model is defined.
 As before, we define an LSTM hidden layer with 200 units. This is the decoder model that
 will read the input sequence and will output a 200 element vector (one
 output per unit) that
@@ -623,7 +623,7 @@ always seven features.
 A single one-week prediction will therefore have the size:[1, 7, 1].
 Therefore, when training
 the model, we must restructure the output data (y) to have the three-dimensional structure
-instead of the two-dimensional structure of[samples, features]used in the previous section.
+instead of the two-dimensional structure of [samples, features]used in the previous section.
 
 ```
 # reshape output into [samples, timesteps, features]
@@ -1333,7 +1333,7 @@ subsequences of seven days, and/or providing all eight features or
 channels as input. We can
 now prepare the data for theConvLSTM2Dmodel. First, we must reshape the
 training dataset
-into the expected structure of[samples, timesteps, rows, cols,
+into the expected structure of [samples, timesteps, rows, cols,
 channels].
 
 ```
@@ -1591,6 +1591,22 @@ lstm: [367.929] 416.3, 379.7, 334.7, 362.3, 374.7, 284.8, 406.7
 A line plot of the per-day RMSE is also created.
 
 ![](./images/443-39.png)
+
+##### Run Notebook
+Click notebook `01_univariate_lstm.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `02_encoder_decoder_lstm.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `03_multivariate_encoder_decoder_lstm.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `04_cnn_encoder_decoder_lstm.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `05_convlstm_encoder_decoder_lstm.ipynb` in jupterLab UI and run jupyter notebook.
+
 
 #### Extensions
 

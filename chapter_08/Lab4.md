@@ -15,7 +15,7 @@ completing this tutorial, you will know:
 - How to develop CNN models for multivariate time series forecasting.
 - How to develop CNN models for multi-step time series forecasting.
 
-Let’s get started.
+Let' s get started.
 
 #### Tutorial Overview
 In this tutorial, we will explore how to develop CNN models for time series forecasting. The
@@ -136,7 +136,7 @@ three input time steps and one output time step.
 
 ```
 
-Now that we know how to prepare a univariate series for modeling, let’s look at developing
+Now that we know how to prepare a univariate series for modeling, let's look at developing
 a CNN model that can learn the mapping of inputs to outputs.
 
 #### CNN Model
@@ -193,7 +193,7 @@ of 2. This is followed by a max pooling layer and a dense layer to interpret the
 An output layer is specified that predicts a single numerical value. The
 model is fit using the
 efficient Adam version of stochastic gradient descent and optimized using the mean squared
-error, or‘mse’, loss function. Once the model is defined, we can fit it on the training dataset.
+error, or 'mse' , loss function. Once the model is defined, we can fit it on the training dataset.
 
 ```
 
@@ -291,7 +291,7 @@ they are:
 1.  Multiple Input Series.
 2.  Multiple Parallel Series.
 
-Let’s take a look at each in turn.
+Let' s take a look at each in turn.
 
 #### Multiple Input Series
 
@@ -1259,7 +1259,7 @@ subtle and important
 differences in the way the training data is prepared. In this section,
 we will demonstrate the
 case of developing a multi-step forecast model using a vector model. Before we look at the
-specifics of the model, let’s first look at the preparation of data for multi-step forecasting.
+specifics of the model, let's first look at the preparation of data for multi-step forecasting.
 
 #### Data Preparation
 
@@ -1365,7 +1365,7 @@ the input and output components of each.
 
 ```
 
-Now that we know how to prepare data for multi-step forecasting, let’s look at a 1D CNN
+Now that we know how to prepare data for multi-step forecasting, let's look at a 1D CNN
 model that can learn this mapping.
 
 #### Vector Output Model
@@ -1376,7 +1376,7 @@ multi-step forecast. This
 approach was seen in the previous section were one time step of each output time series was
 forecasted as a vector. As with the 1D CNN models for univariate data in a prior section, the
 prepared samples must first be reshaped. The CNN expects data to have a three-dimensional
-structure of[samples, timesteps, features], and in this case, we only have one feature so
+structure of [samples, timesteps, features], and in this case, we only have one feature so
 the reshape is straight forward.
 ```
 
@@ -1631,43 +1631,25 @@ specified.
 ```
 
 (6, 3, 2) (6, 2)
-
 [[10 15]
 [20 25]
 [30 35]] [65 85]
-[[20 25]
-
-
 [30 35]
-
 [40 45]] [ 85 105]
-
 [[30 35]
-
 [40 45]
-
 [50 55]] [105 125]
-
 [[40 45]
-
 [50 55]
-
 [60 65]] [125 145]
-
 [[50 55]
-
 [60 65]
-
 [70 75]] [145 165]
-
 [[60 65]
-
 [70 75]
-
 [80 85]] [165 185]
 
 ```
-
 
 We can now develop a 1D CNN model for multi-step predictions. In this case, we will
 demonstrate a vector output model. The complete example is listed below.
@@ -1785,6 +1767,7 @@ Output:
 ```
 The splitsequences() function below implements this behavior.
 
+```
 def split_sequences(sequences, n_steps_in, n_steps_out):
 X, y = list(), list()
 for i in range(len(sequences)):
@@ -1803,13 +1786,10 @@ return array(X), array(y)
 
 ```
 
-multi-step forecasting.
-
 We can demonstrate this function on the small contrived dataset. The
-complete example is
+complete example is listed below.
 
-listed below.
-
+```
 from numpy import array
 from numpy import hstack
 
@@ -1950,7 +1930,6 @@ y = y.reshape((y.shape[0], n_output))
 
 n_features = X.shape[2]
 
-
 # define model
 model = Sequential()
 model.add(Conv1D(filters=64, kernel_size=2, activation='relu', input_shape=(n_steps_in,
@@ -1979,6 +1958,7 @@ series and time steps to be as follows:
 100, 105, 205
 
 ```
+
 We can see that the model forecast gets reasonably close to the expected
 values.
 
@@ -2008,46 +1988,50 @@ dataset.
 - Develop Framework. Use the examples in this chapter as the basis for a framework for
 automatically developing an CNN model for a given time series forecasting problem.
 
+##### Run Notebook
+Click notebook `01_univariate_dataset.ipynb` in jupterLab UI and run jupyter notebook.
 
-### Further Reading
+##### Run Notebook
+Click notebook `02_cnn_univariate.ipynb` in jupterLab UI and run jupyter notebook.
 
-This section provides more resources on the topic if you are looking to
-go deeper.
+##### Run Notebook
+Click notebook `03_dependent_time_series_dataset.ipynb` in jupterLab UI and run jupyter notebook.
 
-#### Papers
+##### Run Notebook
+Click notebook `04_split_samples_dependent_time_series.ipynb` in jupterLab UI and run jupyter notebook.
 
-- Backpropagation Applied to Handwritten Zip Code Recognition, 1989.
-https://ieeexplore.ieee.org/document/6795724/
+##### Run Notebook
+Click notebook `05_cnn_multivariate_dependent_series.ipynb` in jupterLab UI and run jupyter notebook.
 
-- Gradient-based Learning Applied to Document Recognition, 1998.
-https://ieeexplore.ieee.org/document/726791/
+##### Run Notebook
+Click notebook `06_multiheaded_cnn_multivariate_dependent_series.ipynb` in jupterLab UI and run jupyter notebook.
 
-- Very Deep Convolutional Networks for Large-Scale Image Recognition, 2014.
-https://arxiv.org/abs/1409.1556
+##### Run Notebook
+Click notebook `07_split_parallel_series.ipynb` in jupterLab UI and run jupyter notebook.
 
-#### APIs
+##### Run Notebook
+Click notebook `08_cnn_multivariate_parallel_series.ipynb` in jupterLab UI and run jupyter notebook.
 
-- Keras: The Python Deep Learning library.
-https://keras.io/
+##### Run Notebook
+Click notebook `09_multi_output_cnn_multivariate_parallel_series.ipynb` in jupterLab UI and run jupyter notebook.
 
-- Getting started with the Keras Sequential model.
-https://keras.io/getting-started/sequential-model-guide/
+##### Run Notebook
+Click notebook `10_multi_step_dataset.ipynb` in jupterLab UI and run jupyter notebook.
 
-- Getting started with the Keras functional API.
-https://keras.io/getting-started/functional-api-guide/
+##### Run Notebook
+Click notebook `11_vector_cnn_multi_step.ipynb` in jupterLab UI and run jupyter notebook.
 
-- Keras Sequential Model API.
-https://keras.io/models/sequential/
+##### Run Notebook
+Click notebook `12_multivariate_multistep_dependent_dataset.ipynb` in jupterLab UI and run jupyter notebook.
 
-- Keras Core Layers API.
-https://keras.io/layers/core/
+##### Run Notebook
+Click notebook `13_cnn_multivariate_dependent_multistep.ipynb` in jupterLab UI and run jupyter notebook.
 
-- Keras Convolutional Layers API.
-https://keras.io/layers/convolutional/
+##### Run Notebook
+Click notebook `14_multivariate_multistep_parallel_dataset.ipynb` in jupterLab UI and run jupyter notebook.
 
-- Keras Pooling Layers API.
-https://keras.io/layers/pooling/
-
+##### Run Notebook
+Click notebook `15_cnn_multivariate_parallel_multistep.ipynb` in jupterLab UI and run jupyter notebook.
 
 ### Summary
 
@@ -2066,5 +2050,4 @@ time series forecasting problems. Specifically, you learned:
 
 In the next lab, you will discover how to develop Recurrent Neural
 Network models for time
-
 series forecasting.

@@ -26,7 +26,7 @@ maps, and kernel sizes.
 - How to develop a sophisticated multi-headed one-dimensional convolutional neural network
 model that provides an ensemble-like result.
 
-Let’s get started.
+Let' s get started.
 
 #### Tutorial Overview
 
@@ -188,7 +188,7 @@ return trainX, trainy, testX, testy
 Now that we have the data loaded into memory ready for modeling, we can define, fit, and
 evaluate a 1D CNN model. We can define a function named evaluate model() that takes the
 train and test dataset, fits a model on the training dataset, evaluates it on the test dataset, and
-returns an estimate of the model’s performance. First, we must define the CNN model using
+returns an estimate of the model' s performance. First, we must define the CNN model using
 the Keras deep learning library. The model requires a three-dimensional input with [samples,
 timesteps, features].
 
@@ -1476,36 +1476,41 @@ each input head of the model.
 running the example a few times.
 
 ```
-
 >#1: 91.788
-
 >#2: 92.942
-
 >#3: 91.551
-
 >#4: 91.415
-
 >#5: 90.974
-
 >#6: 91.992
-
 >#7: 92.162
-
 >#8: 89.888
-
 >#9: 92.671
-
 >#10: 91.415
-
 [91.78825924669155, 92.94197488971835, 91.55072955548015, 91.41499830335935,
-
 90.97387173396675, 91.99185612487275, 92.16152019002375, 89.88802171700034,
-
 92.67051238547675, 91.41499830335935]
-
 Accuracy: 91.680% (+/-0.823)
-
 ```
+
+##### Run Notebook
+Click notebook `01_1d_cnn_model.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `02_histograms_all_variables.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `03_cnn_standardization.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `04_cnn_tune_filter_maps.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `05_cnn_tune_kernel_size.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `06_multiheaded_cnn.ipynb` in jupterLab UI and run jupyter notebook.
+
+
 #### Extensions
 
 This section lists some ideas for extending the tutorial that you may

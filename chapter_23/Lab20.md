@@ -23,7 +23,7 @@ activity recognition dataset.
 - How to define reasonable lower and upper bounds on the expected performance of more
 sophisticated algorithms capable of feature learning, such as deep learning methods.
 
-Let’s get started.
+Let' s get started.
 
 #### Tutorial Overview
 This tutorial is divided into three parts; they are:
@@ -623,6 +623,13 @@ more sophisticated methods that may attempt to learn higher order features autom
 via feature learning in deep learning methods) from the raw data. In summary, the bounds for
 such methods extend on this dataset from about 87% accuracy with GBM on the raw data to
 about 94% with Extra Trees and SVM on the highly processed dataset, [87% to 94%].
+
+##### Run Notebook
+Click notebook `01_evaluate_ml_models.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `02_evaluate_ml_models_raw_data.ipynb` in jupterLab UI and run jupyter notebook.
+
 
 #### Extensions
 

@@ -21,7 +21,7 @@ you will know:
 
 - How to develop MLP models for multi-step time series forecasting.
 
-Let’s get started.
+Let' s get started.
 
 ### Tutorial Overview
 
@@ -144,7 +144,7 @@ three input time steps and one output time step.
 ```
 
 
-Now that we know how to prepare a univariate series for modeling, let’s
+Now that we know how to prepare a univariate series for modeling, let's
 look at developing
 an MLP model that can learn the mapping of inputs to outputs.
 
@@ -177,7 +177,7 @@ We almost always have multiple samples, therefore, the model will expect the inp
 component of training data to have the dimensions or shape: [samples, features]. Our
 splitsequence() function in the previous section outputs theX with the shape[samples,
 features]ready to use for modeling. The model is fit using the efficient Adam version of
-stochastic gradient descent and optimized using the mean squared error, or‘mse’, loss function.
+stochastic gradient descent and optimized using the mean squared error, or 'mse' , loss function.
 Once the model is defined, we can fit it on the training dataset.
 
 
@@ -265,7 +265,7 @@ multivariate time series data;
 1.  Multiple Input Series.
 2.  Multiple Parallel Series.
 
-Let’s take a look at each in turn.
+Let' s take a look at each in turn.
 
 #### Multiple Input Series
 
@@ -890,7 +890,7 @@ We are now ready to fit an MLP model on this data. As with the previous
 case of multivariate
 
 input, we must flatten the three dimensional structure of the input data samples to a two
-dimensional structure of[samples, features], where lag observations are treated as features
+dimensional structure of [samples, features], where lag observations are treated as features
 by the model.
 
 ```
@@ -1155,7 +1155,7 @@ represents different output variables (as in the previous example) or a vector o
 represents multiple time steps of one variable. Nevertheless, there are subtle and important
 differences in the way the training data is prepared. In this section, we will demonstrate the
 case of developing a multi-step forecast model using a vector model. Before we look at the
-specifics of the model, let’s first look at the preparation of data for multi-step forecasting.
+specifics of the model, let's first look at the preparation of data for multi-step forecasting.
 
 #### Data Preparation
 
@@ -1252,7 +1252,7 @@ the input and output components of each.
 
 ```
 
-Now that we know how to prepare data for multi-step forecasting, let’s look at an MLP
+Now that we know how to prepare data for multi-step forecasting, let's look at an MLP
 model that can learn this mapping.
 
 #### Vector Output Model
@@ -1754,6 +1754,54 @@ results may vary. Consider running the example a few times.
 
 
 ```
+
+##### Run Notebook
+Click notebook `01_univariate_dataset.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `02_mlp_univariate.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `03_dependent_time_series.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `04_transform_dependent_time_series.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `05_mlp_dependent_time_series.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `06_multiheaded_mlp_dependent_time_series.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `07_split_multivariate_time_series.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `07_split_multivariate_time_series.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `08_mlp_multivariate_time_series.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `09_multi-output_mlp_multivariate_time_series.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `10_data_prep_multi_step_forecasting.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `11_mlp_multi_step_forecast.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `12_prepare_data_multi_step_dependent_series.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `13_mlp_multi_step_dependent_series.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `14_prepare_data_multi_step_multivariate_series.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `15_mlp_multi_step_multivariate_series.ipynb` in jupterLab UI and run jupyter notebook.
 
 ### Extensions
 

@@ -26,7 +26,7 @@ data for births.
 - How to grid search simple model hyperparameters for monthly time series data for shampoo
 sales, car sales, and temperature.
 
-Let’s get started.
+Let' s get started.
 
 ### Tutorial Overview
 
@@ -115,7 +115,7 @@ forecast for each offset in the historical dataset.
 ```
 
 We can now look at developing a function for the average forecast strategy. Averaging the
-lastnobservations is straight-forward; for example:
+last no of observations is straight-forward; for example:
 
 ```
 from numpy import mean
@@ -269,8 +269,7 @@ print(average_forecast(data, (i, 3,'mean')))
 
 ```
 
-Running the example calculates the mean values of[10],[10, 10]and[10,
-10, 10].
+Running the example calculates the mean values of [10], [10, 10] and [10, 10, 10].
 
 ```
 
@@ -324,15 +323,15 @@ return median(values)
 
 Next, we need to build up some functions for fitting and evaluating a
 model repeatedly via
-
 walk-forward validation, including splitting a dataset into train and
 test sets and evaluating
-
 one-step forecasts. We can split a list or NumPy array of data using a slice given a specified
 size of the split, e.g. the number of time steps to use from the data in the test set. The
-traintestsplit() function below implements this for a provided dataset and a specified
+train_test_split() function below implements this for a provided dataset and a specified
 number of time steps to use in the test set.
 
+
+```
 # split a univariate dataset into train/test sets
 def train_test_split(data, n_test):
 return data[:-n_test], data[-n_test:]
@@ -342,27 +341,27 @@ return data[:-n_test], data[-n_test:]
 After forecasts have been made for each step in the test dataset, they need to be compared
 to the test set in order to calculate an error score. There are many popular error scores for
 time series forecasting. In this case, we will use root mean squared error (RMSE), but you can
-change this to your preferred measure, e.g. MAPE, MAE, etc. Themeasurermse() function
+change this to your preferred measure, e.g. MAPE, MAE, etc. the measure_rmse() function
 below will calculate the RMSE given a list of actual (the test set) and predicted values.
 
+```
 # root mean squared error or rmse
 def measure_rmse(actual, predicted):
 return sqrt(mean_squared_error(actual, predicted))
 
-
 ```
+
 We can now implement the walk-forward validation scheme. This is a standard approach to
 evaluating a time series forecasting model that respects the temporal ordering of observations.
 First, a provided univariate time series dataset is split into train and test sets using the
-traintestsplit() function. Then the number of observations in the test set are enumerated.
+train_test_split() function. Then the number of observations in the test set are enumerated.
 For each we fit a model on all of the history and make a one step forecast. The true observation for
 the time step is then added to the history, and the process is repeated. Thesimpleforecast()
 function is called in order to fit a model and make a prediction. Finally, an error score is calculated
-by comparing all one-step forecasts to the actual test set by calling themeasurermse() function.
+by comparing all one-step forecasts to the actual test set by calling the measure_rmse() function.
 
-Thewalkforwardvalidation() function below implements this, taking a
+The walkforwardvalidation() function below implements this, taking a
 univariate time
-
 series, a number of time steps to use in the test set, and an array of model configuration.
 
 ```
@@ -388,15 +387,13 @@ return error
 ```
 
 If you are interested in making multi-step predictions, you can change the call topredict()in
-thesimpleforecast() function and also change the calculation of error in themeasurermse()
+the simpleforecast() function and also change the calculation of error in the measure_rmse()
 function. We can callwalkforwardvalidation()repeatedly with different lists of model
 configurations. One possible issue is that some combinations of model configurations may not
 be called for the model and will throw an exception.
 We can trap exceptions and ignore warnings during the grid search by wrapping all calls to
-
-walkforwardvalidation()with a try-except and a block to ignore warnings.
+walkforwardvalidation() with a try-except and a block to ignore warnings.
 We can also
-
 add debugging support to disable these protections in the case we want to see what is really
 going on. Finally, if an error does occur, we can return aNoneresult; otherwise, we can print
 some information about the skill of each model evaluated. This is helpful when a large number
@@ -473,7 +470,7 @@ if __name__ =='__main__':
 Note, you may have to install Joblib: `pip install joblib`
 
 
-That’s it. We can also provide a non-parallel version of evaluating all model configurations
+That' s it. We can also provide a non-parallel version of evaluating all model configurations
 in case we want to debug something.
 
 ```
@@ -517,7 +514,7 @@ scores.sort(key=lambda tup: tup[1])
 return scores
 
 ```
-We’re nearly done. The only thing left to do is to define a list of model configurations to try
+We' re nearly done. The only thing left to do is to define a list of model configurations to try
 for a dataset. We can define this generically. The only parameter we may want to specify is
 the periodicity of the seasonal component in the series (offset), if one exists. By default, we
 
@@ -701,7 +698,7 @@ done
 
 ```
 
-Now that we have a robust framework for grid searching ETS model hyperparameters, let’s
+Now that we have a robust framework for grid searching ETS model hyperparameters, let's
 test it out on a suite of standard univariate time series datasets. The datasets were chosen for
 demonstration purposes; I am not suggesting that an ETS model is the best approach for each
 dataset, and perhaps an SARIMA or something else would be more appropriate in some cases.
@@ -921,9 +918,7 @@ We can see that the best result was an RMSE of about 6.93 births with the follow
 configuration:
 
 - Strategy: Average
-
 - n: 22
-
 - function: mean()
 
 This is surprising given the lack of trend or seasonality, I would have expected either a
@@ -931,9 +926,8 @@ persistence of -1 or an average of the entire historical dataset to result in th
 
 ### Case Study 2: Trend
 
-Themonthly shampoo salesdataset summarizes the monthly sales of shampoo
-over a three-year
-period. You can download the dataset directly from here:
+The monthly shampoo salesdataset summarizes the monthly sales of shampoo
+over a three-year period. You can download the dataset directly from here:
 
 - monthly-shampoo-sales.csv^4
 
@@ -1393,7 +1387,7 @@ a function of the last few observations at prior points in the yearly cycle to b
 
 ### Case Study 4: Trend and Seasonality
 
-Themonthly car salesdataset summarizes the monthly car sales in Quebec,
+The monthly car salesdataset summarizes the monthly car sales in Quebec,
 Canada between
 
 1960 and 1968. You can download the dataset directly from here:
@@ -1626,6 +1620,43 @@ configuration:
 It is not surprising that the chosen model is a function of the last few observations at the
 same point in prior cycles, although the use of the median instead of the mean may not have
 been immediately obvious and the results were much better than the mean.
+
+
+##### Run Notebook
+Click notebook `01_persistence_forecast.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `02_average_forecast.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `03_average_forecast_seasonality.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `04_grid_search.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `05_load_plot_daily_births.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `06_grid_search_daily_births.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `07_load_plot_monthly_shampoo.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `08_grid_search_shampoo_sales.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `09_load_plot_monthly_mean_temp.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `10_grid_search_mean_temp.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `11_load_plot_monthly_car_sales.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `12_grid_search_car_sales.ipynb` in jupterLab UI and run jupyter notebook.
 
 ### Extensions
 

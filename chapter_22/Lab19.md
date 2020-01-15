@@ -24,7 +24,7 @@ motion data.
 - How to model the problem, including framing, data preparation,
 modeling, and evaluation.
 
-Let’s get started.
+Let' s get started.
 
 #### Tutorial Overview
 
@@ -493,7 +493,7 @@ time steps (length of x-axis), therefore, it may be useful to create a subplot f
 align all plots vertically so we can compare the movement on each variable. Theplotsubject()
 function below implements this behavior for the `X` and `y` data for a single subject. The function
 assumes the same order of the variables (3rd axis) as was loaded in theloaddataset() function.
-A crude title is also added to each plot so we don’t get easily confused
+A crude title is also added to each plot so we don' t get easily confused
 about what we are looking at.
 
 ```
@@ -1335,6 +1335,30 @@ of which are suitable for the multiclass nature of the prediction problem. Speci
 confusion matrix will aid in determining whether some classes are easier or more challenging to
 predict than others, such as those for stationary activities versus those activities that involve
 motion.
+
+##### Run Notebook
+Click notebook `01_load_file.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `02_load_group_of_files.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `03_load_all_files.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `04_class_breakdown.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `05_plot_data_for_subject.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `06_plot_histograms_for_subjects.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `07_plot_histograms_by_activity.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `08_plot_activity_durations.ipynb` in jupterLab UI and run jupyter notebook.
 
 #### Extensions
 

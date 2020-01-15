@@ -18,7 +18,7 @@ and histogram for the data distributions.
 - How to use the new understanding of the problem to consider different framings of the
 prediction problem, ways the data may be prepared, and modeling methods that may be
 used.
-Let’s get started.
+Let' s get started.
 
 #### Tutorial Overview
 This tutorial is divided into five parts; they are:
@@ -83,7 +83,7 @@ Date;Time;Global_active_power;Global_reactive_power;Voltage;Global_intensity;...
 ...
 ```
 
-We can see that the data columns are separated by semicolons (‘;’). The data is reported
+We can see that the data columns are separated by semicolons ( ';' ). The data is reported
 to have one row for each day in the time period. The data does have missing values; for example,
 we can see 2-3 days worth of missing data around 28/4/2007.
 
@@ -100,17 +100,17 @@ we can see 2-3 days worth of missing data around 28/4/2007.
 We can start-off by loading the data file as a Pandas DataFrame and summarize the loaded
 data. We can use the read csv() function to load the data. It is easy to load the data with this
 function, but a little tricky to load it correctly. Specifically, we need to do a few custom things:
-- Specify the separate between columns as a semicolon (sep=‘;’)
+- Specify the separate between columns as a semicolon (sep= ';' )
 - Specify that line 0 has the names for the columns (header=0)
 - Specify that we have lots of RAM to avoid a warning that we are loading the data as an
-array of objects instead of an array of numbers, because of the ‘?’ values for missing
+array of objects instead of an array of numbers, because of the  '?'  values for missing
 data (low memory=False).
 - Specify that it is okay for Pandas to try to infer the date-time format when parsing dates,
 which is way faster (infer datetime format=True)
 - Specify that we would like to parse the date and time columns together as a new column
-called ’datetime’ (parse dates=‘datetime’:[0,1])
+called ' datetime'  (parse dates= 'datetime' :[0,1])
 - Specify that we would like our new datetime column to be the index for the DataFrame
-(index col=[’datetime’]).
+(index col=[' datetime' ]).
 
 Putting all of this together, we can now load the data and summarize the loaded shape and
 first few rows.
@@ -124,7 +124,7 @@ print(dataset.shape)
 print(dataset.head())
 ```
 
-Next, we can mark all missing values indicated with a ‘?’ character with a NaN value, which
+Next, we can mark all missing values indicated with a  '?'  character with a NaN value, which
 is a float. This will allow us to work with the data as one array of floating point values rather
 than mixed types, which is less efficient.
 
@@ -275,7 +275,7 @@ is some spiky usage that may match up with a specific period, such as weekends.
 
 ![](./images/345-18.png)
 
-Let’s zoom in and focus on the Global active power, or active power for short. We can
+Let' s zoom in and focus on the Global active power, or active power for short. We can
 create a new plot of the active power for each year to see if there are any common patterns
 across the years. The first year, 2006, has less than one month of data, so will remove it from
 the plot. The complete example is listed below.
@@ -620,6 +620,30 @@ multiple parallel sequences of input data. Further, combinations of these method
 CNN-LSTM and ConvLSTM, have proven effective on time series classification tasks. It is
 possible that these methods may be able to harness the large volume of minute-based data and
 multiple input variables.
+
+##### Run Notebook
+Click notebook `01_prepare_data.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `02_line_plots.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `03_plots_of_yearly_power_consumption.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `04_plots_of_monthly_power_consumption.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `05_plots_of_daily_power_consumption.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `06_histogram_all_variables.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `07_histogram_yearly_power_consumption.ipynb` in jupterLab UI and run jupyter notebook.
+
+##### Run Notebook
+Click notebook `08_histogram_monthly_power_consumption.ipynb` in jupterLab UI and run jupyter notebook.
 
 #### Extensions
 
