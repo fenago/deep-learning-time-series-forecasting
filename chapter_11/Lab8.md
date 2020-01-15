@@ -28,6 +28,15 @@ sales, car sales, and temperature.
 
 Let' s get started.
 
+#### Lab Environment
+Notebooks are ready to run. All packages have been installed. There is no requirement for any setup.
+
+**Note:** Elev8ed Notebooks (powered by Jupyter) will be accessible at the port given to you by your instructor. Password for jupyterLab : `1234`
+
+All Notebooks are present in `work/deep-learning-time-series-forecasting` folder.
+
+You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab8_Simple_Methods_Univariate_Forecasting_Part1`
+
 ### Tutorial Overview
 
 This tutorial is divided into six parts; they are:

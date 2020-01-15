@@ -24,6 +24,16 @@ series forecasting.
 
 Let' s get started.
 
+#### Lab Environment
+Notebooks are ready to run. All packages have been installed. There is no requirement for any setup.
+
+**Note:** Elev8ed Notebooks (powered by Jupyter) will be accessible at the port given to you by your instructor. Password for jupyterLab : `1234`
+
+All Notebooks are present in `work/deep-learning-time-series-forecasting` folder.
+
+You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab18_LSTMs_Multistep_Energy_Usage_Forecasting`
+
+
 #### Tutorial Overview
 
 This tutorial is divided into nine parts; they are:
@@ -1667,44 +1677,3 @@ series forecasting.
 
 - How to develop and evaluate a ConvLSTM Encoder-Decoder model for multi-step time
 series forecasting.
-
-20.13.1 Next
-
-This is the final lesson of this part, the next part will focus on how
-to systematically work
-
-through a real-world multivariate time series classification problem to predict human activities
-from accelerometer data.
-
-### Part VI
-
-### Time Series Classification
-
-
-### Overview
-
-This part focuses on the real-world time series classification problem
-of activity recognition
-
-from multivariate accelerometer data recorded from a smartphone, and how to develop machine
-learning and deep learning classification models to address the problem. The tutorials in this
-part do not seek to demonstrate the best way to solve the problem, instead the dataset provides
-a context on which each of the specific methods can be demonstrated. As such, the performance
-of each method on the dataset are not compared directly. After reading the chapters in this
-part, you will know:
-
-- A review of recent research highlighting deep learning models and their general configura-
-tion that are state-of-the-art for human activity recognition (Chapter 21).
-
-- How to load, summarize and plot a standard human activity recognition dataset comprised
-of accelerometer data recorded from a smartphone (Chapter 22).
-
-- How to develop nonlinear and ensemble machine learning models from accelerometer data
-with domain-specific engineered features (Chapter 23).
-
-- How to develop and evaluate a suite of Convolutional Neural Network models for human
-activity recognition from accelerometer data (Chapter 24).
-
-- How to develop and evaluate a suite of Long Short-Term Memory Neural Network models
-for human activity recognition from accelerometer data (Chapter 25).
-

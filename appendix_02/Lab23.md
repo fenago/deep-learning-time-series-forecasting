@@ -16,9 +16,9 @@ Notebooks are ready to run. All packages have been installed. There is no requir
 
 **Note:** Elev8ed Notebooks (powered by Jupyter) will be accessible at the port given to you by your instructor. Password for jupyterLab : `1234`
 
-All Notebooks are present in `work/deep-learning-for-nlp` folder.
+All Notebooks are present in `work/deep-learning-time-series-forecasting` folder.
 
-You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab19_Setup`
+You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab23_Setup`
 
 **Note:** Terminal is already running. You can also open new terminal by clicking:
 `File` > `New` > `Terminal`.

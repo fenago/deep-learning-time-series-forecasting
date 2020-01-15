@@ -18,7 +18,18 @@ and histogram for the data distributions.
 - How to use the new understanding of the problem to consider different framings of the
 prediction problem, ways the data may be prepared, and modeling methods that may be
 used.
+
 Let' s get started.
+
+#### Lab Environment
+Notebooks are ready to run. All packages have been installed. There is no requirement for any setup.
+
+**Note:** Elev8ed Notebooks (powered by Jupyter) will be accessible at the port given to you by your instructor. Password for jupyterLab : `1234`
+
+All Notebooks are present in `work/deep-learning-time-series-forecasting` folder.
+
+You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab14_Load_and_Explore_Household_Energy_Usage_Data`
+
 
 #### Tutorial Overview
 This tutorial is divided into five parts; they are:
