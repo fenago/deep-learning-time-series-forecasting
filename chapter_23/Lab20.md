@@ -631,7 +631,7 @@ Click notebook `01_evaluate_ml_models.ipynb` in jupterLab UI and run jupyter not
 Click notebook `02_evaluate_ml_models_raw_data.ipynb` in jupterLab UI and run jupyter notebook.
 
 
-#### Extensions
+### Exercises
 
 This section lists some ideas for extending the tutorial that you may
 wish to explore.

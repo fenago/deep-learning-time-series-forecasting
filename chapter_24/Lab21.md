@@ -1511,7 +1511,7 @@ Click notebook `05_cnn_tune_kernel_size.ipynb` in jupterLab UI and run jupyter n
 Click notebook `06_multiheaded_cnn.ipynb` in jupterLab UI and run jupyter notebook.
 
 
-#### Extensions
+### Exercises
 
 This section lists some ideas for extending the tutorial that you may
 wish to explore.

@@ -1803,7 +1803,7 @@ Click notebook `14_prepare_data_multi_step_multivariate_series.ipynb` in jupterL
 ##### Run Notebook
 Click notebook `15_mlp_multi_step_multivariate_series.ipynb` in jupterLab UI and run jupyter notebook.
 
-### Extensions
+## Exercises
 
 This section lists some ideas for extending the tutorial that you may
 wish to explore.

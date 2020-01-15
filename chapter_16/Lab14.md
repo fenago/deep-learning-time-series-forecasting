@@ -645,7 +645,7 @@ Click notebook `07_histogram_yearly_power_consumption.ipynb` in jupterLab UI and
 ##### Run Notebook
 Click notebook `08_histogram_monthly_power_consumption.ipynb` in jupterLab UI and run jupyter notebook.
 
-#### Extensions
+### Exercises
 
 This section lists some ideas for extending the tutorial that you may
 wish to explore.

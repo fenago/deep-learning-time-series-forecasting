@@ -1233,7 +1233,7 @@ Click notebook `02_multichannel_cnn.ipynb` in jupterLab UI and run jupyter noteb
 ##### Run Notebook
 Click notebook `03_multiheaded_cnn.ipynb` in jupterLab UI and run jupyter notebook.
 
-#### Extensions
+### Exercises
 
 This section lists some ideas for extending the tutorial that you may wish to explore.
 

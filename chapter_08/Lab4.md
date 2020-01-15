@@ -1974,7 +1974,7 @@ running the example a few times.
 For an example of CNN models developed for a multivariate multi-step time series forecasting
 problem, see Chapter 19.
 
-### Extensions
+## Exercises
 
 This section lists some ideas for extending the tutorial that you may
 wish to explore.
@@ -2049,5 +2049,4 @@ time series forecasting problems. Specifically, you learned:
 #### Next
 
 In the next lab, you will discover how to develop Recurrent Neural
-Network models for time
-series forecasting.
+Network models for time series forecasting.

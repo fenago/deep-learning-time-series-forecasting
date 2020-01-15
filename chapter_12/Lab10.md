@@ -1148,7 +1148,7 @@ Click notebook `04_grid_search_monthly_mean_temp.ipynb` in jupterLab UI and run 
 ##### Run Notebook
 Click notebook `05_grid_search_monthly_car_sales.ipynb` in jupterLab UI and run jupyter notebook.
 
-### Extensions
+## Exercises
 
 This section lists some ideas for extending the tutorial that you may
 wish to explore.

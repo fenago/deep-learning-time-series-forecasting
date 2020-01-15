@@ -1360,7 +1360,7 @@ Click notebook `07_plot_histograms_by_activity.ipynb` in jupterLab UI and run ju
 ##### Run Notebook
 Click notebook `08_plot_activity_durations.ipynb` in jupterLab UI and run jupyter notebook.
 
-#### Extensions
+### Exercises
 
 This section lists some ideas for extending the tutorial that you may
 wish to explore.

@@ -545,7 +545,7 @@ Click notebook `06_example_create_array.ipynb` in jupterLab UI and run jupyter n
 ##### Run Notebook
 Click notebook `07_example_reshape_3d.ipynb` in jupterLab UI and run jupyter notebook.
 
-### Extensions
+## Exercises
 
 This section lists some ideas for extending the tutorial that you may
 wish to explore.

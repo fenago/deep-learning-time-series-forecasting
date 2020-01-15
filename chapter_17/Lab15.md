@@ -715,7 +715,7 @@ Click notebook `03_train_test_split.ipynb` in jupterLab UI and run jupyter noteb
 ##### Run Notebook
 Click notebook `04_naive_forecasts.ipynb` in jupterLab UI and run jupyter notebook.
 
-#### Extensions
+### Exercises
 
 This section lists some ideas for extending the tutorial that you may
 wish to explore.

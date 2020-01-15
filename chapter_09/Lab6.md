@@ -2216,7 +2216,7 @@ Click notebook `17_multivariate_parallel_series_multi_step_dataset.ipynb` in jup
 ##### Run Notebook
 Click notebook `18_encoder_decoder_lstm_parallel_multi_step.ipynb` in jupterLab UI and run jupyter notebook.
 
-### Extensions
+## Exercises
 
 This section lists some ideas for extending the tutorial that you may
 wish to explore.

@@ -1608,7 +1608,7 @@ Click notebook `04_cnn_encoder_decoder_lstm.ipynb` in jupterLab UI and run jupyt
 Click notebook `05_convlstm_encoder_decoder_lstm.ipynb` in jupterLab UI and run jupyter notebook.
 
 
-#### Extensions
+### Exercises
 
 This section lists some ideas for extending the tutorial that you may
 wish to explore.

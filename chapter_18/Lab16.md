@@ -459,7 +459,7 @@ lead times all have a similar error in the mid- to high-300 kilowatt range.
 
 ![](./images/382-28.png)
 
-#### Extensions
+### Exercises
 
 This section lists some ideas for extending the tutorial that you may
 wish to explore.

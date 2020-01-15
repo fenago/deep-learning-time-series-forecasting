@@ -1564,7 +1564,7 @@ Click notebook `04_grid_search_cnn.ipynb` in jupterLab UI and run jupyter notebo
 ##### Run Notebook
 Click notebook `05_grid_search_lstm.ipynb` in jupterLab UI and run jupyter notebook.
 
-### Extensions
+## Exercises
 
 This section lists some ideas for extending the tutorial that you may
 wish to explore.

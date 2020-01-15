@@ -1658,7 +1658,7 @@ Click notebook `11_load_plot_monthly_car_sales.ipynb` in jupterLab UI and run ju
 ##### Run Notebook
 Click notebook `12_grid_search_car_sales.ipynb` in jupterLab UI and run jupyter notebook.
 
-### Extensions
+## Exercises
 
 This section lists some ideas for extending the tutorial that you may
 wish to explore.
