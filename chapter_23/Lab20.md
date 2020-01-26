@@ -339,6 +339,9 @@ summarize_results(results)
 
 ```
 
+##### Run Notebook
+Click notebook `01_evaluate_ml_models.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example first loads the train and test datasets. The eight models are then
 evaluated in turn, printing the performance for each. Finally, a rank of the models by their
 performance on the test set is displayed. We can see that both the ExtraTrees ensemble method
@@ -588,6 +591,9 @@ summarize_results(results)
 
 ```
 
+##### Run Notebook
+Click notebook `02_evaluate_ml_models_raw_data.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example first loads the dataset. Next the eight defined models are evaluated in
 turn. The final results suggest that ensembles of decision trees perform the best on the raw
 data. Gradient Boosting and Extra Trees perform the best with about 87% and 86% accuracy,
@@ -632,12 +638,6 @@ more sophisticated methods that may attempt to learn higher order features autom
 via feature learning in deep learning methods) from the raw data. In summary, the bounds for
 such methods extend on this dataset from about 87% accuracy with GBM on the raw data to
 about 94% with Extra Trees and SVM on the highly processed dataset, [87% to 94%].
-
-##### Run Notebook
-Click notebook `01_evaluate_ml_models.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `02_evaluate_ml_models_raw_data.ipynb` in jupterLab UI and run jupyter notebook.
 
 
 ### Exercises

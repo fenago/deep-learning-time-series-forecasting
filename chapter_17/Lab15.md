@@ -182,6 +182,9 @@ dataset.to_csv('household_power_consumption.csv')
 
 ```
 
+##### Run Notebook
+Click notebook `01_prepare_data.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example creates the new filehouseholdpowerconsumption.csvthat we can
 use as the starting point for our modeling project.
 
@@ -236,6 +239,9 @@ print(daily_data.head())
 daily_data.to_csv('household_power_consumption_days.csv')
 
 ```
+
+##### Run Notebook
+Click notebook `02_resample_dataset.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example creates a new daily total power consumption dataset and saves the
 result into a separate file namedhouseholdpowerconsumptiondays.csv. We can use this as
@@ -384,6 +390,10 @@ print(test.shape)
 print(test[0, 0, 0], test[-1, -1, 0])
 
 ```
+
+##### Run Notebook
+Click notebook `03_train_test_split.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example shows that indeed the train dataset has 159 weeks of data, whereas
 the test dataset has 46 weeks. We can see that the total active power for the train and test
 dataset for the first and last rows match the data for the specific dates that we defined as the
@@ -683,6 +693,9 @@ pyplot.show()
 
 ```
 
+##### Run Notebook
+Click notebook `04_naive_forecasts.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example first prints the total and daily scores for each model. We can see that
 the weekly strategy performs better than the daily strategy and that the week one year ago
 (week-oya) performs slightly better again. We can see this in both the
@@ -710,19 +723,6 @@ more relevant. Reviewing all strategies on the same plot suggests possible combi
 strategies that may result in even better performance.
 
 ![](./images/371-25.png)
-
-
-##### Run Notebook
-Click notebook `01_prepare_data.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `02_resample_dataset.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `03_train_test_split.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `04_naive_forecasts.ipynb` in jupterLab UI and run jupyter notebook.
 
 ### Exercises
 

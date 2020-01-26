@@ -1,7 +1,7 @@
 <img align="right" src="../logo-small.png">
 
 
-### How to Develop Simple Methods for Univariate Forecasting
+### How to Develop Simple Methods for Univariate Forecasting (Part 1)
 
 Simple forecasting methods include naively using the last observation as the prediction or an
 average of prior observations. It is important to evaluate the performance of simple forecasting
@@ -104,6 +104,9 @@ print(naive_forecast(data, i))
 
 ```
 
+##### Run Notebook
+Click notebook `01_persistence_forecast.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example first prints the contrived dataset, then the naive
 forecast for each offset in the historical dataset.
 
@@ -183,6 +186,10 @@ for i in range(1, len(data)+1):
 print(average_forecast(data, (i, 'mean')))
 
 ```
+
+
+##### Run Notebook
+Click notebook `02_average_forecast.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example forecasts the next value in the series as the mean
 value from contiguous
@@ -277,6 +284,10 @@ for i in [1, 2, 3]:
 print(average_forecast(data, (i, 3,'mean')))
 
 ```
+
+
+##### Run Notebook
+Click notebook `03_average_forecast_seasonality.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example calculates the mean values of [10], [10, 10] and [10, 10, 10].
 
@@ -529,7 +540,6 @@ the periodicity of the seasonal component in the series (offset), if one exists.
 
 will assume no seasonal component. Thesimpleconfigs() function below will
 create a list
-
 of model configurations to evaluate. The function only requires the maximum length of the
 historical data as an argument and optionally the periodicity of any seasonal component, which
 is defaulted to 1 (no seasonal component).
@@ -684,6 +694,11 @@ for cfg, error in scores[:3]:
 print(cfg, error)
 
 ```
+
+
+##### Run Notebook
+Click notebook `04_grid_search.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example first prints the contrived time series dataset. Next, the model
 configurations and their errors are reported as they are evaluated. Finally, the configurations
 and the error for the top three configurations are reported. We can see that the persistence
@@ -718,7 +733,7 @@ The daily female births dataset summarizes the daily total female births in Cali
 1959. For more information on this dataset, see Chapter 11 where it was introduced. You can
 download the dataset directly from here:
 
- daily-total-female-births.csv 1
+- daily-total-female-births.csv 1
 
 Save the file with the filename daily-total-female-births.csv in your current working
 directory. The dataset has one year, or 365 observations. We will use the first 200 for training
@@ -758,6 +773,10 @@ pyplot.xticks([])
 pyplot.show()
 
 ```
+
+
+##### Run Notebook
+Click notebook `05_load_plot_daily_births.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example first summarizes the shape of the loaded dataset. The dataset has one
 year, or 365 observations. We will use the first 200 for training and the remaining 165 as the
@@ -905,6 +924,10 @@ print(cfg, error)
 
 ```
 
+
+##### Run Notebook
+Click notebook `06_grid_search_daily_births.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example prints the model configurations and the RMSE are printed as the
 models are evaluated. The top three model configurations and their error are reported at the
 end of the run.
@@ -974,6 +997,9 @@ pyplot.xticks([])
 pyplot.show()
 
 ```
+
+##### Run Notebook
+Click notebook `07_load_plot_monthly_shampoo.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example first summarizes the shape of the loaded dataset. The dataset has
 three years, or 36 observations. We will use the first 24 for training
@@ -1120,6 +1146,10 @@ print(cfg, error)
 
 ```
 
+
+##### Run Notebook
+Click notebook `08_grid_search_shampoo_sales.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example prints the configurations and the RMSE are printed
 as the models are
 evaluated. The top three model configurations and their error are reported at the end of the
@@ -1160,7 +1190,7 @@ The monthly mean temperatures dataset summarizes the monthly average air tempera
 Nottingham Castle, England from 1920 to 1939 in degrees Fahrenheit. You can download the
 dataset directly from here:
 
- monthly-mean-temp.csv 5
+- monthly-mean-temp.csv 5
 
 Save the file with the filename monthly-mean-temp.csv in your current working directory.
 We can load this dataset as a Pandas Series using the function read csv() and summarize
@@ -1200,6 +1230,10 @@ pyplot.xticks([])
 pyplot.show()
 
 ```
+
+
+##### Run Notebook
+Click notebook `09_load_plot_monthly_mean_temp.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example first summarizes the shape of the loaded dataset.
 The dataset has 20
@@ -1366,6 +1400,10 @@ print(cfg, error)
 
 ```
 
+
+##### Run Notebook
+Click notebook `10_grid_search_mean_temp.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example prints the model configurations and the RMSE are printed as the
 models are evaluated. The top three model configurations and their error are reported at the
 end of the run.
@@ -1386,10 +1424,10 @@ done
 
 We can see that the best result was an RMSE of about 1.50 degrees with the following
 configuration:
- Strategy: Average
- n: 4
- offset: 12
- function: mean()
+- Strategy: Average
+- n: 4
+- offset: 12
+- function: mean()
 
 This finding is not too surprising. Given the seasonal structure of the data, we would expect
 a function of the last few observations at prior points in the yearly cycle to be effective.
@@ -1398,11 +1436,9 @@ a function of the last few observations at prior points in the yearly cycle to b
 
 The monthly car salesdataset summarizes the monthly car sales in Quebec,
 Canada between
-
 1960 and 1968. You can download the dataset directly from here:
 
-
-- monthly-car-sales.csv^6
+- monthly-car-sales.csv
 
 Save the file with the filename monthly-car-sales.csv in your current working directory.
 We can load this dataset as a Pandas Series using the function read csv() and summarize
@@ -1441,6 +1477,10 @@ pyplot.xticks([])
 pyplot.show()
 
 ```
+
+
+##### Run Notebook
+Click notebook `11_load_plot_monthly_car_sales.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example first summarizes the shape of the loaded dataset. The dataset has 9
 years, or 108 observations. We will use the last year or 12 observations
@@ -1597,6 +1637,9 @@ print(cfg, error)
 
 ```
 
+##### Run Notebook
+Click notebook `12_grid_search_car_sales.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example prints the model configurations and the RMSE are printed as the
 models are evaluated. The top three model configurations and their error are reported at the
 end of the run.
@@ -1629,43 +1672,6 @@ configuration:
 It is not surprising that the chosen model is a function of the last few observations at the
 same point in prior cycles, although the use of the median instead of the mean may not have
 been immediately obvious and the results were much better than the mean.
-
-
-##### Run Notebook
-Click notebook `01_persistence_forecast.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `02_average_forecast.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `03_average_forecast_seasonality.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `04_grid_search.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `05_load_plot_daily_births.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `06_grid_search_daily_births.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `07_load_plot_monthly_shampoo.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `08_grid_search_shampoo_sales.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `09_load_plot_monthly_mean_temp.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `10_grid_search_mean_temp.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `11_load_plot_monthly_car_sales.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `12_grid_search_car_sales.ipynb` in jupterLab UI and run jupyter notebook.
 
 ## Exercises
 

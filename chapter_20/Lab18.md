@@ -492,12 +492,14 @@ pyplot.show()
 
 ```
 
+##### Run Notebook
+Click notebook `01_univariate_lstm.ipynb` in jupterLab UI and run jupyter notebook.
+
+
 Running the example fits and evaluates the model, printing the overall RMSE across all
 seven days, and the per-day RMSE for each lead time. We can see that in this case, the model
-
 was skillful as compared to a naive forecast, achieving an overall RMSE
 of about 399 kilowatts,
-
 less than 465 kilowatts achieved by a naive model.
 
 **Note:** Given the stochastic nature of the algorithm, your specific results may vary. Consider
@@ -528,12 +530,10 @@ n_input = 14
 
 Re-running the example with this change first prints a summary of
 performance of the model.
-
 In this case, we can see a further drop in the overall RMSE to about 370
 kilowatts, suggesting
 that further tuning of the input size and perhaps the number of nodes in
 the model may result in better performance.
-
 
 **Note:** Given the stochastic nature of the algorithm, your specific
 results may vary. Consider running the example a few times.
@@ -806,6 +806,11 @@ pyplot.show()
 
 ```
 
+
+
+##### Run Notebook
+Click notebook `02_encoder_decoder_lstm.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example fits the model and summarizes the performance on the test dataset.
 We can see that in this case, the model is skillful, achieving an
 overall RMSE score of about 372
@@ -1035,8 +1040,11 @@ pyplot.show()
 
 ```
 
-Running the example fits the model and summarizes the performance on the test dataset.
+##### Run Notebook
+Click notebook `03_multivariate_encoder_decoder_lstm.ipynb` in jupterLab UI and run jupyter notebook.
 
+
+Running the example fits the model and summarizes the performance on the test dataset.
 Experimentation found that this model appears less stable than the
 univariate case and may
 be related to the differing scales of the input eight variables. We can
@@ -1273,17 +1281,16 @@ pyplot.show()
 
 ```
 
-multi-step forecasting.
+##### Run Notebook
+Click notebook `04_cnn_encoder_decoder_lstm.ipynb` in jupterLab UI and run jupyter notebook.
+
 
 Running the example fits the model and summarizes the performance on the
 test dataset. A
-
 little experimentation showed that using two convolutional layers made
 the model more stable
-
 than using just a single layer. We can see that in this case the model
 is skillful, achieving an
-
 overall RMSE score of about 372 kilowatts.
 
 **Note:** Given the stochastic nature of the algorithm, your specific
@@ -1576,17 +1583,16 @@ pyplot.show()
 
 ```
 
-for multi-step forecasting.
+##### Run Notebook
+Click notebook `05_convlstm_encoder_decoder_lstm.ipynb` in jupterLab UI and run jupyter notebook.
+
 
 Running the example fits the model and summarizes the performance on the
 test dataset. A
-
 little experimentation showed that using two convolutional layers made
 the model more stable
-
 than using just a single layer. We can see that in this case the model
 is skillful, achieving an
-
 overall RMSE score of about 367 kilowatts.
 
 **Note:** Given the stochastic nature of the algorithm, your specific
@@ -1601,22 +1607,6 @@ lstm: [367.929] 416.3, 379.7, 334.7, 362.3, 374.7, 284.8, 406.7
 A line plot of the per-day RMSE is also created.
 
 ![](./images/443-39.png)
-
-##### Run Notebook
-Click notebook `01_univariate_lstm.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `02_encoder_decoder_lstm.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `03_multivariate_encoder_decoder_lstm.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `04_cnn_encoder_decoder_lstm.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `05_convlstm_encoder_decoder_lstm.ipynb` in jupterLab UI and run jupyter notebook.
-
 
 ### Exercises
 

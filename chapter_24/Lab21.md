@@ -444,6 +444,9 @@ run_experiment()
 
 ```
 
+##### Run Notebook
+Click notebook `01_1d_cnn_model.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example first loads the dataset. The models are created and evaluated and a
 debug message is printed for each. Finally, the sample of scores is printed followed by the mean
 and standard deviation. We can see that the model performed well achieving a classification
@@ -614,6 +617,9 @@ trainX, trainy, testX, testy = load_dataset()
 plot_variable_distributions(trainX)
 
 ```
+
+##### Run Notebook
+Click notebook `02_histograms_all_variables.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example creates a figure with nine histogram plots, one for each variable in
 the training dataset. The order of the plots matches the order in which the data was loaded,
@@ -893,6 +899,9 @@ run_experiment(n_params)
 
 ```
 
+##### Run Notebook
+Click notebook `03_cnn_standardization.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example may take a while, depending on your hardware. The performance
 is printed for each evaluated model. At the end of the run, the performance of each of the
 tested configurations is summarized showing the mean and the standard deviation. We can see
@@ -1086,6 +1095,8 @@ run_experiment(n_params)
 
 ```
 
+##### Run Notebook
+Click notebook `04_cnn_tune_filter_maps.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example repeats the experiment for each of the specified number of filters. At
 the end of the run, a summary of the results with each number of filters is presented. We can
@@ -1250,6 +1261,11 @@ n_params = [2, 3, 5, 7, 11]
 run_experiment(n_params)
 
 ```
+
+
+##### Run Notebook
+Click notebook `05_cnn_tune_kernel_size.ipynb` in jupterLab UI and run jupyter notebook.
+
 
 Running the example tests each kernel size in turn. The results are summarized at the end2
 of the run. We can see a general increase in model performance with the increase in kernel
@@ -1471,12 +1487,16 @@ run_experiment()
 
 ```
 
+##### Run Notebook
+Click notebook `06_multiheaded_cnn.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example prints the performance of the model each repeat of the experiment and
 then summarizes the estimated score as the mean and standard deviation, as we did in the first
 case with the simple 1D CNN. We can see that the average performance of the model is about
 91.6% classification accuracy with a standard deviation of about 0.8. This example may be used
 as the basis for exploring a variety of other models that vary different model hyperparameters
 and even different data preparation schemes across the input heads.
+
 It would not be an apples-to-apples comparison to compare this result with a single-headed
 CNN given the relative tripling of the resources in this model. Perhaps an apples-to-apples
 comparison would be a model with the same architecture and the same number of filters across
@@ -1502,25 +1522,6 @@ running the example a few times.
 Accuracy: 91.680% (+/-0.823)
 ```
 
-##### Run Notebook
-Click notebook `01_1d_cnn_model.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `02_histograms_all_variables.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `03_cnn_standardization.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `04_cnn_tune_filter_maps.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `05_cnn_tune_kernel_size.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `06_multiheaded_cnn.ipynb` in jupterLab UI and run jupyter notebook.
-
-
 ### Exercises
 
 This section lists some ideas for extending the tutorial that you may
@@ -1531,7 +1532,6 @@ CNN or if it can do as well or better with a subset, such as just total accelera
 
 - Date Preparation. Explore other data preparation schemes such as data normalization
 and perhaps normalization after standardization.
-
 
 - Network Architecture. Explore other network architectures, such as deeper CNN
 architectures and deeper fully-connected layers for interpreting the CNN input features.

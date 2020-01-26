@@ -387,6 +387,9 @@ summarize_results(scores)
 run_experiment()
 ```
 
+##### Run Notebook
+Click notebook `01_lstm_model.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example first loads the dataset. The models are created and evaluated and a
 debug message is printed for each. Finally, the sample of scores is printed, followed by the mean
 and standard deviation. We can see that the model performed well, achieving a classification
@@ -601,6 +604,10 @@ summarize_results(scores)
 run_experiment()
 ```
 
+##### Run Notebook
+Click notebook `02_cnn_lstm_model.ipynb` in jupterLab UI and run jupyter notebook.
+
+
 Running the example summarizes the model performance for each of the 10 runs before
 a final summary of the model' s performance on the test set is reported. We can see that the
 model achieved a performance of about 90.6% with a standard deviation of about 1%.
@@ -778,6 +785,9 @@ summarize_results(scores)
 run_experiment()
 ```
 
+##### Run Notebook
+Click notebook `03_convlstm_model.ipynb` in jupterLab UI and run jupyter notebook.
+
 As with the prior experiments, running the model prints the performance of the model each
 time it is fit and evaluated. A summary of the final model performance is presented at the end
 of the run. We can see that the model does consistently perform well on the problem achieving
@@ -803,16 +813,6 @@ running the example a few times.
 
 Accuracy: 90.801% (+/-0.886)
 ```
-
-##### Run Notebook
-Click notebook `01_lstm_model.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `02_cnn_lstm_model.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `03_convlstm_model.ipynb` in jupterLab UI and run jupyter notebook.
-
 
 ####  Exercises
 This section lists some ideas for extending the tutorial that you may wish to explore.

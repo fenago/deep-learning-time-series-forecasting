@@ -292,6 +292,10 @@ for cfg, error in scores[:3]:
 print(cfg, error)
 
 ```
+
+##### Run Notebook
+Click notebook `01_grid_search.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example first prints the contrived time series dataset. Next, the model
 configurations and their errors are reported as they are evaluated, truncated below for brevity.
 Finally, the configurations and the error for the top three configurations are reported. We can
@@ -460,12 +464,13 @@ print(cfg, error)
 
 ```
 
+##### Run Notebook
+Click notebook `02_grid_search_daily_births.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example may take a while on modern hardware. Model
 configurations and the
-
 RMSE are printed as the models are evaluated. The top three model
 configurations and their
-
 error are reported at the end of the run.
 
 **Note:** Given the stochastic nature of the algorithm, your specific
@@ -643,6 +648,9 @@ for cfg, error in scores[:3]:
 print(cfg, error)
 
 ```
+
+##### Run Notebook
+Click notebook `03_grid_search_monthly_shampoo_sales.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example may take a while on modern hardware. Model
 configurations and the
@@ -849,6 +857,9 @@ print(cfg, error)
 
 ```
 
+##### Run Notebook
+Click notebook `04_grid_search_monthly_mean_temp.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example may take a while on modern hardware. Model
 configurations and the
 RMSE are printed as the models are evaluated. The top three model
@@ -1048,6 +1059,10 @@ print(cfg, error)
 
 ```
 
+##### Run Notebook
+Click notebook `05_grid_search_monthly_car_sales.ipynb` in jupterLab UI and run jupyter notebook.
+
+
 Running the example may take a while on modern hardware. Model configurations and the
 RMSE are printed as the models are evaluated. The top three model configurations and their
 error are reported at the end of the run. A truncated example of the results from running the
@@ -1081,22 +1096,6 @@ is skillful. We can unpack the configuration of the best performing model as fol
 - Seasonal Order: (1, 1, 0, 12)
 
 - Trend Parameter: 't' (linear trend)
-
-##### Run Notebook
-Click notebook `01_grid_search.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `02_grid_search_daily_births.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `03_grid_search_monthly_shampoo_sales.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `04_grid_search_monthly_mean_temp.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `05_grid_search_monthly_car_sales.ipynb` in jupterLab UI and run jupyter notebook.
-
 
 ## Exercises
 

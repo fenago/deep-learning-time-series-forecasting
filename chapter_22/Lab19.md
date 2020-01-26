@@ -160,6 +160,9 @@ print(data.shape)
 
 ```
 
+##### Run Notebook
+Click notebook `01_load_file.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example loads the filetotalaccytrain.txt, returns a NumPy array, and
 prints the shape of the array. We can see that the training data is comprised of 7,352 rows or
 windows of data, where each window has 128 observations.
@@ -226,6 +229,9 @@ Signals/')
 print(total_acc.shape)
 
 ```
+
+##### Run Notebook
+Click notebook `02_load_group_of_files.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example prints the shape of the returned NumPy array,
 showing the expected
@@ -319,6 +325,9 @@ print(testX.shape, testy.shape)
 
 ```
 
+##### Run Notebook
+Click notebook `03_load_all_files.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example loads the train and test datasets. We can see that the test dataset
 has 2,947 rows of window data. As expected, we can see that the size of windows in the train
 and test sets matches and the size of the output (y) in each the train and test case matches the
@@ -398,6 +407,9 @@ combined = vstack((trainy, testy))
 class_breakdown(combined)
 
 ```
+
+##### Run Notebook
+Click notebook `04_class_breakdown.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example first summarizes the breakdown for the training set. We can see a
 pretty similar distribution of each class hovering between 13% and 19% of the dataset. The
@@ -663,6 +675,9 @@ plot_subject(subX, suby)
 
 ```
 
+##### Run Notebook
+Click notebook `05_plot_data_for_subject.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example prints the unique subjects in the training dataset, the sample of the
 data for the first subject, and creates one figure with 10 plots, one for each of the nine input
 variables and the output class.
@@ -850,6 +865,9 @@ plot_subject_histograms(X, y, sub_map, 3)
 plot_subject_histograms(X, y, sub_map, 6)
 
 ```
+
+##### Run Notebook
+Click notebook `06_plot_histograms_for_subjects.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example creates three figures, each with 10 plots with
 histograms for the three
@@ -1062,6 +1080,9 @@ plot_activity_histograms(subX, suby, 6)
 
 ```
 
+##### Run Notebook
+Click notebook `07_plot_histograms_by_activity.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example creates three figures, where each figure has with six subplots, one
 for each activity for the first subject in the train dataset. Each of the x, y, and z axes for
 the total acceleration data have a blue, orange, and green histogram respectively. In the first
@@ -1214,6 +1235,9 @@ plot_activity_durations_by_subject(X, y, sub_map)
 
 ```
 
+##### Run Notebook
+Click notebook `08_plot_activity_durations.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example creates six box plots, one for each activity. Each box plot summarizes
 how long (in rows or the number of windows) subjects in the training dataset spent on each
 activity. We can see that the subjects spent more time on stationary activities (4, 5 and 6) and
@@ -1345,30 +1369,6 @@ of which are suitable for the multiclass nature of the prediction problem. Speci
 confusion matrix will aid in determining whether some classes are easier or more challenging to
 predict than others, such as those for stationary activities versus those activities that involve
 motion.
-
-##### Run Notebook
-Click notebook `01_load_file.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `02_load_group_of_files.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `03_load_all_files.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `04_class_breakdown.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `05_plot_data_for_subject.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `06_plot_histograms_for_subjects.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `07_plot_histograms_by_activity.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `08_plot_activity_durations.ipynb` in jupterLab UI and run jupyter notebook.
 
 ### Exercises
 

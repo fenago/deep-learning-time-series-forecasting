@@ -1,7 +1,7 @@
 <img align="right" src="../logo-small.png">
 
 
-### How to Develop CNNs for Time Series Forecasting
+### How to Develop CNNs for Time Series Forecasting (Part 1)
 
 Convolutional Neural Network models, or CNNs for short, can be applied to time series
 forecasting. There are many types of CNN models that can be used for each specific type of
@@ -130,6 +130,9 @@ for i in range(len(X)):
 print(X[i], y[i])
 
 ```
+
+##### Run Notebook
+Click notebook `01_univariate_dataset.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example splits the univariate series into six samples where each sample has
 three input time steps and one output time step.
@@ -276,6 +279,9 @@ print(yhat)
 
 ```
 
+##### Run Notebook
+Click notebook `02_cnn_univariate.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example prepares the data, fits the model, and makes a prediction. We can see
 that the model predicts the next value in the sequence.
 
@@ -353,6 +359,9 @@ dataset = hstack((in_seq1, in_seq2, out_seq))
 print(dataset)
 
 ```
+
+##### Run Notebook
+Click notebook `03_dependent_time_series_dataset.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example prints the dataset with one row per time step and
 one column for each
@@ -479,6 +488,10 @@ for i in range(len(X)):
 print(X[i], y[i])
 
 ```
+
+##### Run Notebook
+Click notebook `04_split_samples_dependent_time_series.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example first prints the shape of the `X` and `y` components. We can see that the
 Xcomponent has a three-dimensional structure. The first dimension is the number of samples,
 in this case 7. The second dimension is the number of time steps per sample, in this case 3, the
@@ -627,6 +640,9 @@ yhat = model.predict(x_input, verbose=0)
 print(yhat)
 
 ```
+
+##### Run Notebook
+Click notebook `05_cnn_multivariate_dependent_series.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example prepares the data, fits the model, and makes a
 prediction.
@@ -810,6 +826,9 @@ print(yhat)
 
 ```
 
+##### Run Notebook
+Click notebook `06_multiheaded_cnn_multivariate_dependent_series.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example prepares the data, fits the model, and makes a
 prediction.
 
@@ -937,6 +956,9 @@ for i in range(len(X)):
 print(X[i], y[i])
 
 ```
+
+##### Run Notebook
+Click notebook `07_split_parallel_series.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example first prints the shape of the prepared `X` and `y` components. The
 shape ofXis three-dimensional, including the number of samples (6), the number of time steps
@@ -1083,6 +1105,9 @@ yhat = model.predict(x_input, verbose=0)
 print(yhat)
 
 ```
+
+##### Run Notebook
+Click notebook `08_cnn_multivariate_parallel_series.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example prepares the data, fits the model and makes a
 prediction.
@@ -1240,6 +1265,9 @@ print(yhat)
 
 ```
 
+##### Run Notebook
+Click notebook `09_multi_output_cnn_multivariate_parallel_series.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example prepares the data, fits the model, and makes a
 prediction.
 
@@ -1361,6 +1389,9 @@ for i in range(len(X)):
 print(X[i], y[i])
 
 ```
+
+##### Run Notebook
+Click notebook `10_multi_step_dataset.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example splits the univariate series into input and output time steps and prints
 the input and output components of each.
@@ -1485,6 +1516,10 @@ yhat = model.predict(x_input, verbose=0)
 print(yhat)
 
 ```
+
+##### Run Notebook
+Click notebook `11_vector_cnn_multi_step.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example forecasts and prints the next two time steps in the
 sequence.
 
@@ -1629,6 +1664,9 @@ print(X[i], y[i])
 
 ```
 
+##### Run Notebook
+Click notebook `12_multivariate_multistep_dependent_dataset.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example first prints the shape of the prepared training data. We can see that
 the shape of the input portion of the samples is three-dimensional, comprised of six samples,
 with three time steps and two variables for the two input time series.
@@ -1725,6 +1763,9 @@ yhat = model.predict(x_input, verbose=0)
 print(yhat)
 
 ```
+
+##### Run Notebook
+Click notebook `13_cnn_multivariate_dependent_multistep.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example fits the model and predicts the next two time steps of the output
 sequence beyond the dataset. We would expect the next two steps to be [185, 205].
@@ -1840,6 +1881,9 @@ for i in range(len(X)):
 print(X[i], y[i])
 
 ```
+
+##### Run Notebook
+Click notebook `14_multivariate_multistep_parallel_dataset.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example first prints the shape of the prepared training dataset. We can see
 that both the input (X) and output (Y) elements of the dataset are three
@@ -1958,6 +2002,9 @@ print(yhat)
 
 ```
 
+##### Run Notebook
+Click notebook `15_cnn_multivariate_parallel_multistep.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example fits the model and predicts the values for each of the three time steps
 for the next two time steps beyond the end of the dataset. We would expect the values for these
 series and time steps to be as follows:
@@ -1997,56 +2044,10 @@ dataset.
 - Develop Framework. Use the examples in this chapter as the basis for a framework for
 automatically developing an CNN model for a given time series forecasting problem.
 
-##### Run Notebook
-Click notebook `01_univariate_dataset.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `02_cnn_univariate.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `03_dependent_time_series_dataset.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `04_split_samples_dependent_time_series.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `05_cnn_multivariate_dependent_series.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `06_multiheaded_cnn_multivariate_dependent_series.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `07_split_parallel_series.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `08_cnn_multivariate_parallel_series.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `09_multi_output_cnn_multivariate_parallel_series.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `10_multi_step_dataset.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `11_vector_cnn_multi_step.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `12_multivariate_multistep_dependent_dataset.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `13_cnn_multivariate_dependent_multistep.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `14_multivariate_multistep_parallel_dataset.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `15_cnn_multivariate_parallel_multistep.ipynb` in jupterLab UI and run jupyter notebook.
-
 ### Summary
 
 In this tutorial, you discovered how to develop a suite of CNN models
 for a range of standard
-
 time series forecasting problems. Specifically, you learned:
 
 - How to develop CNN models for univariate time series forecasting.

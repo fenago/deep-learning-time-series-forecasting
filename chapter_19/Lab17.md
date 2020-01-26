@@ -440,139 +440,155 @@ tie all of this together. The complete example is listed below.
 
 ```
 
+# univariate multi-step cnn for the power usage dataset
 from math import sqrt
 from numpy import split
 from numpy import array
 from pandas import read_csv
+import warnings
+warnings.simplefilter("ignore")
 from sklearn.metrics import mean_squared_error
+%matplotlib inline
 from matplotlib import pyplot
 from keras.models import Sequential
 from keras.layers import Dense
+import tensorflow.python.util.deprecation as deprecation
+deprecation._PRINT_DEPRECATION_WARNINGS = False
 from keras.layers import Flatten
 from keras.layers.convolutional import Conv1D
 from keras.layers.convolutional import MaxPooling1D
 
+# split a univariate dataset into train/test sets
 def split_dataset(data):
+	# split into standard weeks
+	train, test = data[1:-328], data[-328:-6]
+	# restructure into windows of weekly data
+	train = array(split(train, len(train)/7))
+	test = array(split(test, len(test)/7))
+	return train, test
 
-
-train, test = data[1:-328], data[-328:-6]
-# restructure into windows of weekly data
-train = array(split(train, len(train)/7))
-test = array(split(test, len(test)/7))
-return train, test
-
+# evaluate one or more weekly forecasts against expected values
 def evaluate_forecasts(actual, predicted):
-scores = list()
+	scores = list()
+	# calculate an RMSE score for each day
+	for i in range(actual.shape[1]):
+		# calculate mse
+		mse = mean_squared_error(actual[:, i], predicted[:, i])
+		# calculate rmse
+		rmse = sqrt(mse)
+		# store
+		scores.append(rmse)
+	# calculate overall RMSE
+	s = 0
+	for row in range(actual.shape[0]):
+		for col in range(actual.shape[1]):
+			s += (actual[row, col] - predicted[row, col])**2
+	score = sqrt(s / (actual.shape[0] * actual.shape[1]))
+	return score, scores
 
-for i in range(actual.shape[1]):
-mse = mean_squared_error(actual[:, i], predicted[:, i])
-rmse = sqrt(mse)
-scores.append(rmse)
-
-s = 0
-for row in range(actual.shape[0]):
-for col in range(actual.shape[1]):
-s += (actual[row, col] - predicted[row, col])**2
-score = sqrt(s / (actual.shape[0] * actual.shape[1]))
-return score, scores
-
+# summarize scores
 def summarize_scores(name, score, scores):
-s_scores = ','.join(['%.1f' % s for s in scores])
-print('%s: [%.3f] %s'% (name, score, s_scores))
+	s_scores = ', '.join(['%.1f' % s for s in scores])
+	print('%s: [%.3f] %s' % (name, score, s_scores))
 
+# convert history into inputs and outputs
 def to_supervised(train, n_input, n_out=7):
-data = train.reshape((train.shape[0]*train.shape[1], train.shape[2]))
-X, y = list(), list()
-in_start = 0
+	# flatten data
+	data = train.reshape((train.shape[0]*train.shape[1], train.shape[2]))
+	X, y = list(), list()
+	in_start = 0
+	# step over the entire history one time step at a time
+	for _ in range(len(data)):
+		# define the end of the input sequence
+		in_end = in_start + n_input
+		out_end = in_end + n_out
+		# ensure we have enough data for this instance
+		if out_end < len(data):
+			x_input = data[in_start:in_end, 0]
+			x_input = x_input.reshape((len(x_input), 1))
+			X.append(x_input)
+			y.append(data[in_end:out_end, 0])
+		# move along one time step
+		in_start += 1
+	return array(X), array(y)
 
-for _ in range(len(data)):
-
-in_end = in_start + n_input
-out_end = in_end + n_out
-
-if out_end < len(data):
-x_input = data[in_start:in_end, 0]
-x_input = x_input.reshape((len(x_input), 1))
-X.append(x_input)
-y.append(data[in_end:out_end, 0])
-
-in_start += 1
-return array(X), array(y)
-
+# train the model
 def build_model(train, n_input):
-train_x, train_y = to_supervised(train, n_input)
+	# prepare data
+	train_x, train_y = to_supervised(train, n_input)
+	# define parameters
+	verbose, epochs, batch_size = 0, 20, 4
+	n_timesteps, n_features, n_outputs = train_x.shape[1], train_x.shape[2], train_y.shape[1]
+	# define model
+	model = Sequential()
+	model.add(Conv1D(filters=16, kernel_size=3, activation='relu', input_shape=(n_timesteps,n_features)))
+	model.add(MaxPooling1D(pool_size=2))
+	model.add(Flatten())
+	model.add(Dense(10, activation='relu'))
+	model.add(Dense(n_outputs))
+	model.compile(loss='mse', optimizer='adam')
+	# fit network
+	model.fit(train_x, train_y, epochs=epochs, batch_size=batch_size, verbose=verbose)
+	return model
 
-verbose, epochs, batch_size = 0, 20, 4
-n_timesteps, n_features, n_outputs = train_x.shape[1], train_x.shape[2], train_y.shape[1]
-# define model
-model = Sequential()
-model.add(Conv1D(filters=16, kernel_size=3, activation='relu',
-input_shape=(n_timesteps,n_features)))
-model.add(MaxPooling1D(pool_size=2))
-model.add(Flatten())
-model.add(Dense(10, activation='relu'))
-model.add(Dense(n_outputs))
-model.compile(loss='mse', optimizer='adam')
-# fit network
-model.fit(train_x, train_y, epochs=epochs, batch_size=batch_size, verbose=verbose)
-return model
-
+# make a forecast
 def forecast(model, history, n_input):
-data = array(history)
-data = data.reshape((data.shape[0]*data.shape[1], data.shape[2]))
+	# flatten data
+	data = array(history)
+	data = data.reshape((data.shape[0]*data.shape[1], data.shape[2]))
+	# retrieve last observations for input data
+	input_x = data[-n_input:, 0]
+	# reshape into [1, n_input, 1]
+	input_x = input_x.reshape((1, len(input_x), 1))
+	# forecast the next week
+	yhat = model.predict(input_x, verbose=0)
+	# we only want the vector forecast
+	yhat = yhat[0]
+	return yhat
 
-input_x = data[-n_input:, 0]
-
-input_x = input_x.reshape((1, len(input_x), 1))
-
-yhat = model.predict(input_x, verbose=0)
-
-yhat = yhat[0]
-return yhat
-
+# evaluate a single model
 def evaluate_model(train, test, n_input):
-model = build_model(train, n_input)
+	# fit model
+	model = build_model(train, n_input)
+	# history is a list of weekly data
+	history = [x for x in train]
+	# walk-forward validation over each week
+	predictions = list()
+	for i in range(len(test)):
+		# predict the week
+		yhat_sequence = forecast(model, history, n_input)
+		# store the predictions
+		predictions.append(yhat_sequence)
+		# get real observation and add to history for predicting the next week
+		history.append(test[i, :])
+	# evaluate predictions days for each week
+	predictions = array(predictions)
+	score, scores = evaluate_forecasts(test[:, :, 0], predictions)
+	return score, scores
 
-history = [x for x in train]
-
-predictions = list()
-for i in range(len(test)):
-
-yhat_sequence = forecast(model, history, n_input)
-
-predictions.append(yhat_sequence)
-
-history.append(test[i, :])
-
-predictions = array(predictions)
-score, scores = evaluate_forecasts(test[:, :, 0], predictions)
-return score, scores
-
-dataset = read_csv('household_power_consumption_days.csv',
-header=0,
-infer_datetime_format=True, parse_dates=['datetime'],
-index_col=['datetime'])
-
+# load the new file
+dataset = read_csv('household_power_consumption_days.csv', header=0, infer_datetime_format=True, parse_dates=['datetime'], index_col=['datetime'])
+# split into train and test
 train, test = split_dataset(dataset.values)
-
-
+# evaluate model and get scores
 n_input = 7
 score, scores = evaluate_model(train, test, n_input)
 # summarize scores
 summarize_scores('cnn', score, scores)
 # plot scores
-days = ['sun','mon', 'tue','wed','thr', 'fri','sat']
+days = ['sun', 'mon', 'tue', 'wed', 'thr', 'fri', 'sat']
 pyplot.plot(days, scores, marker='o', label='cnn')
 pyplot.show()
 
 ```
 
+##### Run Notebook
+Click notebook `01_cnn_univariate_model.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example fits and evaluates the model, printing the overall RMSE across all
 seven days, and the per-day RMSE for each lead time. We can see that in this case, the model
-
 was skillful as compared to a naive forecast, achieving an overall RMSE
 of about 404 kilowatts,
-
 less than 465 kilowatts achieved by a naive model.
 
 **Note:** Given the stochastic nature of the algorithm, your specific results may vary. Consider
@@ -592,9 +608,9 @@ standard week is the hardest day to forecast.
 
 We can increase the number of prior days to use as input from seven to
 14 by changing the
-
 ninputvariable.
 
+```
 n_input = 14
 
 ```
@@ -632,10 +648,12 @@ forecasted. It is unclear whether this is the case in the power consumption prob
 explore it nonetheless. First, we must update the preparation of the training data to include all
 of the eight features, not just the one total daily power consumed. It requires a single line:
 
+```
 # use all variables in input samples
 X.append(data[in_start:in_end, :])
 
 ```
+
 The completetosupervised() function with this change is listed below.
 
 ```
@@ -872,6 +890,9 @@ pyplot.show()
 
 ```
 
+##### Run Notebook
+Click notebook `02_multichannel_cnn.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example fits and evaluates the model, printing the overall RMSE across all
 seven days, and the per-day RMSE for each lead time. We can see that in
 this case, the use of
@@ -1056,14 +1077,20 @@ listed below.
 
 ```
 
+# multi headed multi-step cnn for the power usage dataset
 from math import sqrt
 from numpy import split
 from numpy import array
 from pandas import read_csv
+import warnings
+warnings.simplefilter("ignore")
 from sklearn.metrics import mean_squared_error
+%matplotlib inline
 from matplotlib import pyplot
 from keras.utils.vis_utils import plot_model
 from keras.layers import Dense
+import tensorflow.python.util.deprecation as deprecation
+deprecation._PRINT_DEPRECATION_WARNINGS = False
 from keras.layers import Flatten
 from keras.layers.convolutional import Conv1D
 from keras.layers.convolutional import MaxPooling1D
@@ -1071,147 +1098,163 @@ from keras.models import Model
 from keras.layers import Input
 from keras.layers.merge import concatenate
 
+# split a univariate dataset into train/test sets
 def split_dataset(data):
+	# split into standard weeks
+	train, test = data[1:-328], data[-328:-6]
+	# restructure into windows of weekly data
+	train = array(split(train, len(train)/7))
+	test = array(split(test, len(test)/7))
+	return train, test
 
-train, test = data[1:-328], data[-328:-6]
-
-train = array(split(train, len(train)/7))
-test = array(split(test, len(test)/7))
-return train, test
-
+# evaluate one or more weekly forecasts against expected values
 def evaluate_forecasts(actual, predicted):
-scores = list()
+	scores = list()
+	# calculate an RMSE score for each day
+	for i in range(actual.shape[1]):
+		# calculate mse
+		mse = mean_squared_error(actual[:, i], predicted[:, i])
+		# calculate rmse
+		rmse = sqrt(mse)
+		# store
+		scores.append(rmse)
+	# calculate overall RMSE
+	s = 0
+	for row in range(actual.shape[0]):
+		for col in range(actual.shape[1]):
+			s += (actual[row, col] - predicted[row, col])**2
+	score = sqrt(s / (actual.shape[0] * actual.shape[1]))
+	return score, scores
 
-for i in range(actual.shape[1]):
-mse = mean_squared_error(actual[:, i], predicted[:, i])
-rmse = sqrt(mse)
-scores.append(rmse)
-
-s = 0
-for row in range(actual.shape[0]):
-for col in range(actual.shape[1]):
-s += (actual[row, col] - predicted[row, col])**2
-score = sqrt(s / (actual.shape[0] * actual.shape[1]))
-return score, scores
-
-
+# summarize scores
 def summarize_scores(name, score, scores):
-s_scores = ','.join(['%.1f' % s for s in scores])
-print('%s: [%.3f] %s'% (name, score, s_scores))
+	s_scores = ', '.join(['%.1f' % s for s in scores])
+	print('%s: [%.3f] %s' % (name, score, s_scores))
 
+# convert history into inputs and outputs
 def to_supervised(train, n_input, n_out=7):
-data = train.reshape((train.shape[0]*train.shape[1], train.shape[2]))
-X, y = list(), list()
-in_start = 0
+	# flatten data
+	data = train.reshape((train.shape[0]*train.shape[1], train.shape[2]))
+	X, y = list(), list()
+	in_start = 0
+	# step over the entire history one time step at a time
+	for _ in range(len(data)):
+		# define the end of the input sequence
+		in_end = in_start + n_input
+		out_end = in_end + n_out
+		# ensure we have enough data for this instance
+		if out_end < len(data):
+			X.append(data[in_start:in_end, :])
+			y.append(data[in_end:out_end, 0])
+		# move along one time step
+		in_start += 1
+	return array(X), array(y)
 
-for _ in range(len(data)):
-
-in_end = in_start + n_input
-out_end = in_end + n_out
-
-if out_end < len(data):
-X.append(data[in_start:in_end, :])
-y.append(data[in_end:out_end, 0])
-
-in_start += 1
-return array(X), array(y)
-
+# plot training history
 def plot_history(history):
-pyplot.subplot(2, 1, 1)
-pyplot.plot(history.history['loss'], label='train')
-pyplot.plot(history.history['val_loss'], label='test')
-pyplot.title('loss', y=0, loc='center')
-pyplot.legend()
-pyplot.subplot(2, 1, 2)
-pyplot.plot(history.history['rmse'], label='train')
-pyplot.plot(history.history['val_rmse'], label='test')
-pyplot.title('rmse', y=0, loc='center')
-pyplot.legend()
-pyplot.show()
+	# plot loss
+	pyplot.subplot(2, 1, 1)
+	pyplot.plot(history.history['loss'], label='train')
+	pyplot.plot(history.history['val_loss'], label='test')
+	pyplot.title('loss', y=0, loc='center')
+	pyplot.legend()
+	# plot rmse
+	pyplot.subplot(2, 1, 2)
+	pyplot.plot(history.history['rmse'], label='train')
+	pyplot.plot(history.history['val_rmse'], label='test')
+	pyplot.title('rmse', y=0, loc='center')
+	pyplot.legend()
+	pyplot.show()
 
+# train the model
 def build_model(train, n_input):
-train_x, train_y = to_supervised(train, n_input)
+	# prepare data
+	train_x, train_y = to_supervised(train, n_input)
+	# define parameters
+	verbose, epochs, batch_size = 0, 25, 16
+	n_timesteps, n_features, n_outputs = train_x.shape[1], train_x.shape[2], train_y.shape[1]
+	# create a channel for each variable
+	in_layers, out_layers = list(), list()
+	for _ in range(n_features):
+		inputs = Input(shape=(n_timesteps,1))
+		conv1 = Conv1D(filters=32, kernel_size=3, activation='relu')(inputs)
+		conv2 = Conv1D(filters=32, kernel_size=3, activation='relu')(conv1)
+		pool1 = MaxPooling1D(pool_size=2)(conv2)
+		flat = Flatten()(pool1)
+		# store layers
+		in_layers.append(inputs)
+		out_layers.append(flat)
+	# merge heads
+	merged = concatenate(out_layers)
+	# interpretation
+	dense1 = Dense(200, activation='relu')(merged)
+	dense2 = Dense(100, activation='relu')(dense1)
+	outputs = Dense(n_outputs)(dense2)
+	model = Model(inputs=in_layers, outputs=outputs)
+	# compile model
+	model.compile(loss='mse', optimizer='adam')
+	# plot the model
+	# plot_model(model, show_shapes=True, to_file='multiheaded_cnn.png')
+	# fit network
+	input_data = [train_x[:,:,i].reshape((train_x.shape[0],n_timesteps,1)) for i in range(n_features)]
+	model.fit(input_data, train_y, epochs=epochs, batch_size=batch_size, verbose=verbose)
+	return model
 
-verbose, epochs, batch_size = 0, 25, 16
-n_timesteps, n_features, n_outputs = train_x.shape[1],
-train_x.shape[2], train_y.shape[1]
-
-in_layers, out_layers = list(), list()
-for _ in range(n_features):
-inputs = Input(shape=(n_timesteps,1))
-conv1 = Conv1D(filters=32, kernel_size=3, activation='relu')(inputs)
-conv2 = Conv1D(filters=32, kernel_size=3, activation='relu')(conv1)
-pool1 = MaxPooling1D(pool_size=2)(conv2)
-flat = Flatten()(pool1)
-
-in_layers.append(inputs)
-out_layers.append(flat)
-# merge heads
-merged = concatenate(out_layers)
-# interpretation
-dense1 = Dense(200, activation='relu')(merged)
-dense2 = Dense(100, activation='relu')(dense1)
-outputs = Dense(n_outputs)(dense2)
-model = Model(inputs=in_layers, outputs=outputs)
-# compile model
-model.compile(loss='mse', optimizer='adam')
-# plot the model
-plot_model(model, show_shapes=True, to_file='multiheaded_cnn.png')
-# fit network
-input_data = [train_x[:,:,i].reshape((train_x.shape[0],n_timesteps,1)) for i in
-range(n_features)]
-model.fit(input_data, train_y, epochs=epochs, batch_size=batch_size, verbose=verbose)
-return model
-
+# make a forecast
 def forecast(model, history, n_input):
-data = array(history)
-data = data.reshape((data.shape[0]*data.shape[1], data.shape[2]))
+	# flatten data
+	data = array(history)
+	data = data.reshape((data.shape[0]*data.shape[1], data.shape[2]))
+	# retrieve last observations for input data
+	input_x = data[-n_input:, :]
+	# reshape into n input arrays
+	input_x = [input_x[:,i].reshape((1,input_x.shape[0],1)) for i in range(input_x.shape[1])]
+	# forecast the next week
+	yhat = model.predict(input_x, verbose=0)
+	# we only want the vector forecast
+	yhat = yhat[0]
+	return yhat
 
-input_x = data[-n_input:, :]
-
-input_x = [input_x[:,i].reshape((1,input_x.shape[0],1)) for i in
-range(input_x.shape[1])]
-
-yhat = model.predict(input_x, verbose=0)
-
-yhat = yhat[0]
-return yhat
-
+# evaluate a single model
 def evaluate_model(train, test, n_input):
-model = build_model(train, n_input)
+	# fit model
+	model = build_model(train, n_input)
+	# history is a list of weekly data
+	history = [x for x in train]
+	# walk-forward validation over each week
+	predictions = list()
+	for i in range(len(test)):
+		# predict the week
+		yhat_sequence = forecast(model, history, n_input)
+		# store the predictions
+		predictions.append(yhat_sequence)
+		# get real observation and add to history for predicting the next week
+		history.append(test[i, :])
+	# evaluate predictions days for each week
+	predictions = array(predictions)
+	score, scores = evaluate_forecasts(test[:, :, 0], predictions)
+	return score, scores
 
-history = [x for x in train]
-
-predictions = list()
-for i in range(len(test)):
-
-yhat_sequence = forecast(model, history, n_input)
-
-predictions.append(yhat_sequence)
-
-history.append(test[i, :])
-
-predictions = array(predictions)
-score, scores = evaluate_forecasts(test[:, :, 0], predictions)
-return score, scores
-
-dataset = read_csv('household_power_consumption_days.csv', header=0,
-
-
-infer_datetime_format=True, parse_dates=['datetime'],
-index_col=['datetime'])
-
+# load the new file
+dataset = read_csv('household_power_consumption_days.csv', header=0, infer_datetime_format=True, parse_dates=['datetime'], index_col=['datetime'])
+# split into train and test
 train, test = split_dataset(dataset.values)
-
+# evaluate model and get scores
 n_input = 14
 score, scores = evaluate_model(train, test, n_input)
-
+# summarize scores
 summarize_scores('cnn', score, scores)
-days = ['sun','mon', 'tue','wed','thr', 'fri','sat']
+# plot scores
+days = ['sun', 'mon', 'tue', 'wed', 'thr', 'fri', 'sat']
 pyplot.plot(days, scores, marker='o', label='cnn')
 pyplot.show()
 
 ```
+
+
+##### Run Notebook
+Click notebook `03_multiheaded_cnn.ipynb` in jupterLab UI and run jupyter notebook.
+
 
 Running the example fits and evaluates the model, printing the overall RMSE across all
 seven days, and the per-day RMSE for each lead time. We can see that in this case, the overall
@@ -1233,15 +1276,6 @@ results may be useful when combined with another forecast model. It may be inter
 explore alternate methods in the architecture for merging the output of each submodel.
 
 ![](./images/409-33.png)
-
-##### Run Notebook
-Click notebook `01_cnn_univariate_model.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `02_multichannel_cnn.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `03_multiheaded_cnn.ipynb` in jupterLab UI and run jupyter notebook.
 
 ### Exercises
 

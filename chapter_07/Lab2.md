@@ -1,7 +1,7 @@
 <img align="right" src="../logo-small.png">
 
 
-### How to Develop MLPs for Time Series Forecasting
+### How to Develop MLPs for Time Series Forecasting (Part 1)
 
 Multilayer Perceptrons, or MLPs for short, can be applied to time series
 forecasting. A challenge
@@ -140,13 +140,14 @@ print(X[i], y[i])
 
 ```
 
+##### Run Notebook
+Click notebook `01_univariate_dataset.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example splits the univariate series into six samples where each sample has
 three input time steps and one output time step.
 
 
 ```
-
-
 [10 20 30] 40
 [20 30 40] 50
 [30 40 50] 60
@@ -155,7 +156,6 @@ three input time steps and one output time step.
 [60 70 80] 90
 
 ```
-
 
 Now that we know how to prepare a univariate series for modeling, let's
 look at developing
@@ -255,6 +255,9 @@ print(yhat)
 
 ```
 
+##### Run Notebook
+Click notebook `02_mlp_univariate.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example prepares the data, fits the model, and makes a
 prediction. We can see
 that the model predicts the next value in the sequence.
@@ -328,6 +331,10 @@ dataset = hstack((in_seq1, in_seq2, out_seq))
 print(dataset)
 
 ```
+
+##### Run Notebook
+Click notebook `03_dependent_time_series.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example prints the dataset with one row per time step and one column for each
 of the two input and one output parallel time series.
 
@@ -447,6 +454,9 @@ for i in range(len(X)):
 print(X[i], y[i])
 
 ```
+
+##### Run Notebook
+Click notebook `04_transform_dependent_time_series.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example first prints the shape of the X and y components. We can see that the
 X component has a three-dimensional structure. The first dimension is the number of samples,
@@ -604,6 +614,9 @@ print(yhat)
 
 ```
 
+##### Run Notebook
+Click notebook `05_mlp_dependent_time_series.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example prepares the data, fits the model, and makes a
 prediction.
 
@@ -752,6 +765,9 @@ print(yhat)
 
 ```
 
+##### Run Notebook
+Click notebook `06_multiheaded_mlp_dependent_time_series.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example prepares the data, fits the model, and makes a
 prediction.
 
@@ -864,6 +880,9 @@ print(X[i], y[i])
 
 ```
 
+##### Run Notebook
+Click notebook `07_split_multivariate_time_series.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example first prints the shape of the prepared `X` and `y` components. The
 shape ofXis three-dimensional, including the number of samples (6), the number of time steps
 chosen per sample (3), and the number of parallel time series or features (3). The shape ofy
@@ -897,11 +916,10 @@ and output components of each sample.
 ```
 
 
-Vector-Output MLP Model
+# Vector-Output MLP Model
 
 We are now ready to fit an MLP model on this data. As with the previous
 case of multivariate
-
 input, we must flatten the three dimensional structure of the input data samples to a two
 dimensional structure of [samples, features], where lag observations are treated as features
 by the model.
@@ -921,6 +939,7 @@ series.
 n_output = y.shape[1]
 
 ```
+
 We can now define our model, using the flattened vector length for the input layer and the
 number of time series as the vector length when making a prediction.
 
@@ -932,6 +951,7 @@ model.add(Dense(n_output))
 model.compile(optimizer='adam', loss='mse')
 
 ```
+
 We can predict the next value in each of the three parallel series by providing an input of
 three time steps for each series.
 
@@ -1002,6 +1022,9 @@ yhat = model.predict(x_input, verbose=0)
 print(yhat)
 
 ```
+
+##### Run Notebook
+Click notebook `08_mlp_multivariate_time_series.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example prepares the data, fits the model, and makes a
 prediction.
@@ -1148,6 +1171,9 @@ print(yhat)
 
 ```
 
+##### Run Notebook
+Click notebook `09_multi-output_mlp_multivariate_time_series.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example prepares the data, fits the model, and makes a
 prediction.
 
@@ -1253,6 +1279,9 @@ print(X[i], y[i])
 
 ```
 
+##### Run Notebook
+Click notebook `10_data_prep_multi_step_forecasting.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example splits the univariate series into input and output time steps and prints
 the input and output components of each.
 
@@ -1348,6 +1377,9 @@ yhat = model.predict(x_input, verbose=0)
 print(yhat)
 
 ```
+
+##### Run Notebook
+Click notebook `11_mlp_multi_step_forecast.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example forecasts and prints the next two time steps in the
 sequence.
@@ -1473,6 +1505,9 @@ print(X[i], y[i])
 
 ```
 
+##### Run Notebook
+Click notebook `12_prepare_data_multi_step_dependent_series.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example first prints the shape of the prepared training data. We can see that
 the shape of the input portion of the samples is three-dimensional, comprised of six samples,
 with three time steps and two variables for the two input time series. The output portion of the
@@ -1550,6 +1585,9 @@ yhat = model.predict(x_input, verbose=0)
 print(yhat)
 
 ```
+
+##### Run Notebook
+Click notebook `13_mlp_multi_step_dependent_series.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example fits the model and predicts the next two time steps of the output
 sequence beyond the dataset. We would expect the next two steps to be [185, 205].
@@ -1653,6 +1691,9 @@ print(X[i], y[i])
 
 ```
 
+##### Run Notebook
+Click notebook `14_prepare_data_multi_step_multivariate_series.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example first prints the shape of the prepared training dataset. We can see
 that both the input (X) and output (Y ) elements of the dataset are three dimensional for the
 number of samples, time steps, and variables or parallel time series respectively. The input and
@@ -1743,6 +1784,9 @@ print(yhat)
 
 ```
 
+##### Run Notebook
+Click notebook `15_mlp_multi_step_multivariate_series.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example fits the model and predicts the values for each of
 the three time steps
 for the next two time steps beyond the end of the dataset. We would
@@ -1767,54 +1811,6 @@ results may vary. Consider running the example a few times.
 
 
 ```
-
-##### Run Notebook
-Click notebook `01_univariate_dataset.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `02_mlp_univariate.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `03_dependent_time_series.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `04_transform_dependent_time_series.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `05_mlp_dependent_time_series.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `06_multiheaded_mlp_dependent_time_series.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `07_split_multivariate_time_series.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `07_split_multivariate_time_series.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `08_mlp_multivariate_time_series.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `09_multi-output_mlp_multivariate_time_series.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `10_data_prep_multi_step_forecasting.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `11_mlp_multi_step_forecast.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `12_prepare_data_multi_step_dependent_series.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `13_mlp_multi_step_dependent_series.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `14_prepare_data_multi_step_multivariate_series.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `15_mlp_multi_step_multivariate_series.ipynb` in jupterLab UI and run jupyter notebook.
 
 ## Exercises
 

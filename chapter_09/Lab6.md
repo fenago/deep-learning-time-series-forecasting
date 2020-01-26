@@ -1,7 +1,7 @@
 <img align="right" src="../logo-small.png">
 
 
-### How to Develop LSTMs for Time Series Forecasting
+### How to Develop LSTMs for Time Series Forecasting (Part 1)
 
 Long Short-Term Memory networks, or LSTMs for short, can be applied to time series forecasting.
 There are many types of LSTM models that can be used for each specific type of time series
@@ -142,6 +142,9 @@ print(X[i], y[i])
 
 ```
 
+##### Run Notebook
+Click notebook `01_univariate_dataset.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example splits the univariate series into six samples where each sample has
 three input time steps and one output time step.
 
@@ -280,6 +283,10 @@ print(yhat)
 
 ```
 
+##### Run Notebook
+Click notebook `02_vanilla_lstm_univariate.ipynb` in jupterLab UI and run jupyter notebook.
+
+
 Running the example prepares the data, fits the model, and makes a prediction. We can see
 that the model predicts the next value in the sequence.
 
@@ -365,6 +372,9 @@ print(yhat)
 
 ```
 
+##### Run Notebook
+Click notebook `03_stacked_lstm_univariate.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example predicts the next value in the sequence, which we
 expect would be 100.
 
@@ -441,6 +451,9 @@ yhat = model.predict(x_input, verbose=0)
 print(yhat)
 
 ```
+
+##### Run Notebook
+Click notebook `04_bidirectional_lstm_univariate.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example predicts the next value in the sequence, which we
 expect would be 100.
@@ -585,6 +598,9 @@ print(yhat)
 
 ```
 
+##### Run Notebook
+Click notebook `05_cnn_lstm_univariate.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example predicts the next value in the sequence, which we
 expect would be 100.
 
@@ -687,6 +703,9 @@ print(yhat)
 
 ```
 
+##### Run Notebook
+Click notebook `06_convlstm_univariate.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example predicts the next value in the sequence, which we
 expect would be 100.
 
@@ -765,6 +784,11 @@ dataset = hstack((in_seq1, in_seq2, out_seq))
 print(dataset)
 
 ```
+
+##### Run Notebook
+Click notebook `07_dependent_series_dataset.ipynb` in jupterLab UI and run jupyter notebook.
+
+
 Running the example prints the dataset with one row per time step and one column for each
 of the two input and one output parallel time series.
 
@@ -841,44 +865,48 @@ input time series as
 input. The complete example is listed below.
 
 ```
+# multivariate data preparation
 from numpy import array
 from numpy import hstack
 
+# split a multivariate sequence into samples
 def split_sequences(sequences, n_steps):
-X, y = list(), list()
-for i in range(len(sequences)):
+	X, y = list(), list()
+	for i in range(len(sequences)):
+		# find the end of this pattern
+		end_ix = i + n_steps
+		# check if we are beyond the dataset
+		if end_ix > len(sequences):
+			break
+		# gather input and output parts of the pattern
+		seq_x, seq_y = sequences[i:end_ix, :-1], sequences[end_ix-1, -1]
+		X.append(seq_x)
+		y.append(seq_y)
+	return array(X), array(y)
 
-end_ix = i + n_steps
-
-if end_ix > len(sequences):
-break
-
-seq_x, seq_y = sequences[i:end_ix, :-1], sequences[end_ix-1, -1]
-X.append(seq_x)
-y.append(seq_y)
-return array(X), array(y)
-
+# define input sequence
 in_seq1 = array([10, 20, 30, 40, 50, 60, 70, 80, 90])
 in_seq2 = array([15, 25, 35, 45, 55, 65, 75, 85, 95])
-out_seq = array([in_seq1[i]+in_seq2[i] for i in
-range(len(in_seq1))])
-
+out_seq = array([in_seq1[i]+in_seq2[i] for i in range(len(in_seq1))])
+# convert to [rows, columns] structure
 in_seq1 = in_seq1.reshape((len(in_seq1), 1))
 in_seq2 = in_seq2.reshape((len(in_seq2), 1))
 out_seq = out_seq.reshape((len(out_seq), 1))
-
+# horizontally stack columns
 dataset = hstack((in_seq1, in_seq2, out_seq))
-
-
+# choose a number of time steps
 n_steps = 3
-
+# convert into input/output
 X, y = split_sequences(dataset, n_steps)
 print(X.shape, y.shape)
-
+# summarize the data
 for i in range(len(X)):
-print(X[i], y[i])
+	print(X[i], y[i])
 
 ```
+
+##### Run Notebook
+Click notebook `08_dependent_series_to_samples.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example first prints the shape of the `X` and `y` components. We can
 see that
@@ -1022,6 +1050,9 @@ print(yhat)
 
 ```
 
+##### Run Notebook
+Click notebook `09_vanilla_lstm_multivariate_dependent_series.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example prepares the data, fits the model, and makes a
 prediction.
 
@@ -1146,6 +1177,9 @@ for i in range(len(X)):
 print(X[i], y[i])
 
 ```
+
+##### Run Notebook
+Click notebook `10_multivariate_parallel_series_dataset.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example first prints the shape of the prepared `X` and `y` components. The
 shape ofXis three-dimensional, including the number of samples (6), the number of time steps
@@ -1283,6 +1317,8 @@ yhat = model.predict(x_input, verbose=0)
 print(yhat)
 
 ```
+##### Run Notebook
+Click notebook `11_stacked_lstm_multivariate_parallel_series.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example prepares the data, fits the model, and makes a
 prediction.
@@ -1405,6 +1441,10 @@ for i in range(len(X)):
 print(X[i], y[i])
 
 ```
+
+
+##### Run Notebook
+Click notebook `12_multi_step_series_dataset.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example splits the univariate series into input and output
 time steps and prints the input and output components of each.
@@ -1542,6 +1582,9 @@ yhat = model.predict(x_input, verbose=0)
 print(yhat)
 
 ```
+
+##### Run Notebook
+Click notebook `13_stacked_lstm_multi_step.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example forecasts and prints the next two time steps in the
 sequence.
@@ -1687,6 +1730,9 @@ print(yhat)
 
 ```
 
+##### Run Notebook
+Click notebook `14_encoder_decoder_lstm_multi_step.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example forecasts and prints the next two time steps in the
 sequence.
 
@@ -1700,9 +1746,6 @@ running the example a few times.
 [116.213615]]]
 
 ```
-
-For an example of LSTM models developed for a multi-step time series forecasting problem,
-see Chapter 20.
 
 ### Multivariate Multi-step LSTM Models
 
@@ -1728,7 +1771,6 @@ focus our attention.
 
 There are those multivariate time series forecasting problems where the
 output series is separate
-
 but dependent upon the input time series, and multiple time steps are required for the output
 series. For example, consider our multivariate time series from a prior section:
 
@@ -1833,6 +1875,9 @@ print(X[i], y[i])
 
 ```
 
+##### Run Notebook
+Click notebook `15_multivariate_dependent_series_multi_step_dataset.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example first prints the shape of the prepared training data. We can see that
 the shape of the input portion of the samples is three-dimensional, comprised of six samples,
 with three time steps, and two variables for the 2 input time series. The output portion of the
@@ -1923,9 +1968,10 @@ x_input = array([[70, 75], [80, 85], [90, 95]])
 x_input = x_input.reshape((1, n_steps_in, n_features))
 yhat = model.predict(x_input, verbose=0)
 print(yhat)
-
-
 ```
+
+##### Run Notebook
+Click notebook `16_stacked_lstm_dependent_multi_step.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example fits the model and predicts the next two time steps of the output
 sequence beyond the dataset. We would expect the next two steps to be:[185, 205]. It is a
@@ -2005,47 +2051,50 @@ We can demonstrate this function on the small contrived dataset. The
 complete example is listed below.
 
 ```
+# multivariate multi-step data preparation
 from numpy import array
 from numpy import hstack
 
+# split a multivariate sequence into samples
 def split_sequences(sequences, n_steps_in, n_steps_out):
-X, y = list(), list()
-for i in range(len(sequences)):
+	X, y = list(), list()
+	for i in range(len(sequences)):
+		# find the end of this pattern
+		end_ix = i + n_steps_in
+		out_end_ix = end_ix + n_steps_out
+		# check if we are beyond the dataset
+		if out_end_ix > len(sequences):
+			break
+		# gather input and output parts of the pattern
+		seq_x, seq_y = sequences[i:end_ix, :], sequences[end_ix:out_end_ix, :]
+		X.append(seq_x)
+		y.append(seq_y)
+	return array(X), array(y)
 
-end_ix = i + n_steps_in
-out_end_ix = end_ix + n_steps_out
-
-if out_end_ix > len(sequences):
-break
-
-seq_x, seq_y = sequences[i:end_ix, :],
-sequences[end_ix:out_end_ix, :]
-X.append(seq_x)
-y.append(seq_y)
-return array(X), array(y)
-
+# define input sequence
 in_seq1 = array([10, 20, 30, 40, 50, 60, 70, 80, 90])
 in_seq2 = array([15, 25, 35, 45, 55, 65, 75, 85, 95])
-out_seq = array([in_seq1[i]+in_seq2[i] for i in
-range(len(in_seq1))])
-
+out_seq = array([in_seq1[i]+in_seq2[i] for i in range(len(in_seq1))])
+# convert to [rows, columns] structure
 in_seq1 = in_seq1.reshape((len(in_seq1), 1))
 in_seq2 = in_seq2.reshape((len(in_seq2), 1))
 out_seq = out_seq.reshape((len(out_seq), 1))
-
+# horizontally stack columns
 dataset = hstack((in_seq1, in_seq2, out_seq))
-
+# choose a number of time steps
 n_steps_in, n_steps_out = 3, 2
-
+# covert into input/output
 X, y = split_sequences(dataset, n_steps_in, n_steps_out)
-
-
 print(X.shape, y.shape)
-
+# summarize the data
 for i in range(len(X)):
-print(X[i], y[i])
+	print(X[i], y[i])
 
 ```
+
+##### Run Notebook
+Click notebook `17_multivariate_parallel_series_multi_step_dataset.ipynb` in jupterLab UI and run jupyter notebook.
+
 
 Running the example first prints the shape of the prepared training dataset. We can see
 that both the input (X) and output (Y) elements of the dataset are three
@@ -2146,6 +2195,9 @@ print(yhat)
 
 ```
 
+##### Run Notebook
+Click notebook `18_encoder_decoder_lstm_parallel_multi_step.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example fits the model and predicts the values for each of
 the three time steps
 for the next two time steps beyond the end of the dataset. We would
@@ -2170,60 +2222,6 @@ results may vary. Consider running the example a few times.
 [103.299355 109.18123 212.6863 ]]]
 
 ```
-
-##### Run Notebook
-Click notebook `01_univariate_dataset.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `02_vanilla_lstm_univariate.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `03_stacked_lstm_univariate.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `04_bidirectional_lstm_univariate.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `05_cnn_lstm_univariate.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `06_convlstm_univariate.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `07_dependent_series_dataset.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `08_dependent_series_to_samples.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `09_vanilla_lstm_multivariate_dependent_series.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `10_multivariate_parallel_series_dataset.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `11_stacked_lstm_multivariate_parallel_series.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `12_multi_step_series_dataset.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `13_stacked_lstm_multi_step.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `14_encoder_decoder_lstm_multi_step.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `15_multivariate_dependent_series_multi_step_dataset.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `16_stacked_lstm_dependent_multi_step.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `17_multivariate_parallel_series_multi_step_dataset.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `18_encoder_decoder_lstm_parallel_multi_step.ipynb` in jupterLab UI and run jupyter notebook.
 
 ## Exercises
 

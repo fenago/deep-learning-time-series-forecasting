@@ -304,6 +304,9 @@ print(cfg, error)
 
 ```
 
+##### Run Notebook
+Click notebook `01_grid_search.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example first prints the contrived time series dataset. Next, the model
 configurations and their errors are reported as they are evaluated. Finally, the configurations
 and the error for the top three configurations are reported.
@@ -483,6 +486,9 @@ for cfg, error in scores[:3]:
 print(cfg, error)
 
 ```
+
+##### Run Notebook
+Click notebook `02_grid_search_daily_births.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example may take a few minutes as fitting each ETS model can take about a
 minute on modern hardware. Model configurations and the RMSE are printed
@@ -672,6 +678,9 @@ for cfg, error in scores[:3]:
 print(cfg, error)
 
 ```
+
+##### Run Notebook
+Click notebook `03_grid_search_monthly_shampoo_sales.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example is fast given there are a small number of
 observations. Model configura-
@@ -893,6 +902,9 @@ print(cfg, error)
 
 ```
 
+##### Run Notebook
+Click notebook `04_grid_search_monthly_mean_temp.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example is relatively slow given the large amount of data.
 Model configurations
 and the RMSE are printed as the models are evaluated. The top three
@@ -1092,6 +1104,9 @@ print(cfg, error)
 
 ```
 
+##### Run Notebook
+Click notebook `05_grid_search_monthly_car_sales.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example is slow given the large amount of data. Model
 configurations and the
 RMSE are printed as the models are evaluated. The top three model
@@ -1141,21 +1156,6 @@ as follows:
 
 This is a little surprising as I would have guessed that a six-month seasonal model would be
 the preferred approach.
-
-##### Run Notebook
-Click notebook `01_grid_search.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `02_grid_search_daily_births.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `03_grid_search_monthly_shampoo_sales.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `04_grid_search_monthly_mean_temp.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `05_grid_search_monthly_car_sales.ipynb` in jupterLab UI and run jupyter notebook.
 
 ## Exercises
 

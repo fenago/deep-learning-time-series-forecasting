@@ -155,24 +155,29 @@ from numpy import array
 
 # split a univariate sequence into samples
 def split_sequence(sequence, n_steps):
-X, y = list(), list()
-for i in range(len(sequence)):
-# find the end of this pattern
-end_ix = i + n_steps
-# check if we are beyond the sequence
-if end_ix > len(sequence)-1:
-break
-# gather input and output parts of the pattern
-seq_x, seq_y = sequence[i:end_ix], sequence[end_ix]
-X.append(seq_x)
-y.append(seq_y)
-return array(X), array(y)
+	X, y = list(), list()
+	for i in range(len(sequence)):
+		# find the end of this pattern
+		end_ix = i + n_steps
+		# check if we are beyond the sequence
+		if end_ix > len(sequence)-1:
+			break
+		# gather input and output parts of the pattern
+		seq_x, seq_y = sequence[i:end_ix], sequence[end_ix]
+		X.append(seq_x)
+		y.append(seq_y)
+	return array(X), array(y)
+
+# define univariate time series
 series = array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 print(series.shape)
+# transform to a supervised learning problem
 X, y = split_sequence(series, 3)
 print(X.shape, y.shape)
+# show each sample
 for i in range(len(X)):
-print(X[i], y[i])
+	print(X[i], y[i])
+
 ```
 
 Running the example first prints the shape of the time series, in this case 10 time steps
@@ -316,6 +321,9 @@ X = X.reshape((X.shape[0], X.shape[1], 1))
 print(X.shape)
 ```
 
+##### Run Notebook
+Click notebook `02_transform_univariate_2d_3d.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example first prints the shape of the univariate time series, in this case 10
 time steps. It then summarizes the shape if the input (X) and output (y) elements of each
 sample after the univariate series has been converted into a supervised learning problem, in
@@ -383,6 +391,9 @@ print(data.shape)
 
 ```
 
+##### Run Notebook
+Click notebook `03_example_load_data.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running this piece both prints the first 5 rows of data and the shape of
 the loaded data. We
 can see we have 5,000 rows and 2 columns: a standard univariate time
@@ -415,6 +426,9 @@ data = data[:, 1]
 print(data.shape)
 
 ```
+
+##### Run Notebook
+Click notebook `04_example_drop_time.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example prints the shape of the dataset after the time
 column has been removed.
@@ -462,6 +476,10 @@ print(len(samples))
 
 ```
 
+
+##### Run Notebook
+Click notebook `05_example_split_subsequences.ipynb` in jupterLab UI and run jupyter notebook.
+
 We now have 25 subsequences of 200 time steps each.
 
 ```
@@ -496,6 +514,9 @@ print(data.shape)
 
 ```
 
+##### Run Notebook
+Click notebook `06_example_create_array.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running this piece, you should see that we have 25 rows and 200 columns.
 Interpreted in a
 machine learning context, this dataset has 25 samples and 200 features
@@ -529,33 +550,15 @@ data = data.reshape((len(samples), length, 1))
 print(data.shape)
 ```
 
+##### Run Notebook
+Click notebook `07_example_reshape_3d.ipynb` in jupterLab UI and run jupyter notebook.
+
 And that is it. The data can now be used as an input (X) to an LSTM
 model, or even a CNN model.
 
 ```
 (25, 200, 1)
 ```
-
-##### Run Notebook
-Click notebook `01_time_series_to_supervised.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `02_transform_univariate_2d_3d.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `03_example_load_data.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `04_example_drop_time.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `05_example_split_subsequences.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `06_example_create_array.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `07_example_reshape_3d.ipynb` in jupterLab UI and run jupyter notebook.
 
 ## Exercises
 

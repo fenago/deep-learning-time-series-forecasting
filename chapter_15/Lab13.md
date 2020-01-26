@@ -102,6 +102,9 @@ pyplot.show()
 
 ```
 
+##### Run Notebook
+Click notebook `01_load_dataset.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example first prints the shape of the dataset.
 
 ```
@@ -491,6 +494,9 @@ print(cfg, error)
 
 ```
 
+##### Run Notebook
+Click notebook `02_grid_search_persistence.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example prints the RMSE of the model evaluated using walk-forward validation
 on the final 12 months of data. Each model configuration is evaluated 10 times, although,
 because the model has no stochastic element, the score is the same each time. At the end of
@@ -849,6 +855,9 @@ print(cfg, error)
 
 ```
 
+##### Run Notebook
+Click notebook `03_grid_search_mlp.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example, we can see that there are a total of eight configurations to be evaluated
 by the framework. Each config will be evaluated 10 times; that means 10 models will be created
 and evaluated using walk-forward validation to calculate an RMSE score before an average of
@@ -1190,6 +1199,9 @@ print(cfg, error)
 
 ```
 
+##### Run Notebook
+Click notebook `04_grid_search_cnn.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example, we can see that only eight distinct configurations
 are evaluated. We
 can see that a configuration of [12, 64, 5, 100, 1, 12]achieved an RMSE
@@ -1516,6 +1528,9 @@ print(cfg, error)
 
 ```
 
+##### Run Notebook
+Click notebook `05_grid_search_lstm.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example, we can see that only two distinct configurations are evaluated. We
 can see that a configuration of [12, 100, 50, 1, 12]achieved an RMSE of
 21.24, which is
@@ -1558,21 +1573,6 @@ done
 [12, 100, 50, 150, 12] 21.259553398553606
 
 ```
-
-##### Run Notebook
-Click notebook `01_load_dataset.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `02_grid_search_persistence.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `03_grid_search_mlp.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `04_grid_search_cnn.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `05_grid_search_lstm.ipynb` in jupterLab UI and run jupyter notebook.
 
 ## Exercises
 

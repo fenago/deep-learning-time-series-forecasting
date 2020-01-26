@@ -198,6 +198,9 @@ parse_dates=['datetime'], index_col=['datetime'])
 print(dataset.head())
 ```
 
+##### Run Notebook
+Click notebook `01_prepare_data.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example first loads the raw data and summarizes the shape and first five rows
 of the loaded data.
 
@@ -273,6 +276,9 @@ pyplot.xticks([])
 pyplot.show()
 ```
 
+##### Run Notebook
+Click notebook `02_line_plots.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example creates a single image with eight subplots, one for each variable. This
 gives us a really high level of the four years of one minute observations. We can see that
 something interesting was going on in Sub metering 3 (environmental control) that may not
@@ -318,6 +324,10 @@ pyplot.xticks([])
 pyplot.show()
 ```
 
+##### Run Notebook
+Click notebook `03_plots_of_yearly_power_consumption.ipynb` in jupterLab UI and run jupyter notebook.
+
+
 Running the example creates one single image with four line plots, one for each full year
 (or mostly full years) of data in the dataset. We can see some common gross patterns across
 the years, such as around Feb-Mar and around Aug-Sept where we see a marked decrease in
@@ -360,6 +370,10 @@ pyplot.xticks([])
 pyplot.show()
 ```
 
+##### Run Notebook
+Click notebook `04_plots_of_monthly_power_consumption.ipynb` in jupterLab UI and run jupyter notebook.
+
+
 Running the example creates a single image with 12 line plots, one for each month in 2007.
 We can see the sign-wave of power consumption of the days within each month. This is good as
 we would expect some kind of daily pattern in power consumption. We can see that there are
@@ -399,6 +413,9 @@ pyplot.yticks([])
 pyplot.xticks([])
 pyplot.show()
 ```
+
+##### Run Notebook
+Click notebook `05_plots_of_daily_power_consumption.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example creates a single image with 20 line plots, one for the first 20 days in
 January 2007. There is commonality across the days; for example, many days consumption
@@ -442,6 +459,9 @@ pyplot.xticks([])
 pyplot.show()
 ```
 
+##### Run Notebook
+Click notebook `06_histogram_all_variables.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example creates a single figure with a separate histogram for each of the 8
 variables. We can see that active and reactive power, intensity, as well as the sub-metered power
 are all skewed distributions down towards small watt-hour or kilowatt values. We can also see
@@ -481,6 +501,9 @@ pyplot.yticks([])
 pyplot.xticks([])
 pyplot.show()
 ```
+
+##### Run Notebook
+Click notebook `07_histogram_yearly_power_consumption.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example creates a single plot with four figures, one for each of the years between
 2007 to 2010. We can see that the distribution of active power consumption across those years
@@ -524,6 +547,9 @@ pyplot.yticks([])
 pyplot.xticks([])
 pyplot.show()
 ```
+
+##### Run Notebook
+Click notebook `08_histogram_monthly_power_consumption.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example creates an image with 12 plots, one for each month in 2007. We can
 see generally the same data distribution each month. The axes for the plots appear to align
@@ -631,30 +657,6 @@ multiple parallel sequences of input data. Further, combinations of these method
 CNN-LSTM and ConvLSTM, have proven effective on time series classification tasks. It is
 possible that these methods may be able to harness the large volume of minute-based data and
 multiple input variables.
-
-##### Run Notebook
-Click notebook `01_prepare_data.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `02_line_plots.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `03_plots_of_yearly_power_consumption.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `04_plots_of_monthly_power_consumption.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `05_plots_of_daily_power_consumption.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `06_histogram_all_variables.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `07_histogram_yearly_power_consumption.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `08_histogram_monthly_power_consumption.ipynb` in jupterLab UI and run jupyter notebook.
 
 ### Exercises
 

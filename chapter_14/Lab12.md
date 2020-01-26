@@ -422,6 +422,9 @@ summarize_scores('persistence', scores)
 
 ```
 
+##### Run Notebook
+Click notebook `01_simple_forecast.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example prints the RMSE of the model evaluated using
 walk-forward validation
 on the final 12 months of data. The model is evaluated 30 times, although, because the model
@@ -699,6 +702,9 @@ scores = repeat_evaluate(data, config, n_test)
 summarize_scores('mlp', scores)
 
 ```
+
+##### Run Notebook
+Click notebook `02_mlp_forecast_model.ipynb` in jupterLab UI and run jupyter notebook.
 
 Running the example prints the RMSE for each of the 30 repeated
 evaluations of the model.
@@ -992,19 +998,19 @@ scores = repeat_evaluate(data, config, n_test)
 summarize_scores('cnn', scores)
 
 ```
-Running the example first prints the RMSE for each repeated evaluation of the model. At
 
+
+##### Run Notebook
+Click notebook `03_cnn_forecast_model.ipynb` in jupterLab UI and run jupyter notebook.
+
+Running the example first prints the RMSE for each repeated evaluation of the model. At
 the end of the run, we can see that indeed the model is skillful,
 achieving an average RMSE
-
 of 1,524.06, which is better than the naive model, the SARIMA model, and
 even the MLP
-
 model in the previous section. This is impressive given that the model
 operated on the raw data
-
 directly without scaling or the data being made stationary.
-
 
 The standard deviation of the score is large, at about 57 sales, but is^13 the size of the
 standard deviation observed with the MLP model in the previous section. We have some
@@ -1330,6 +1336,10 @@ summarize_scores('lstm', scores)
 
 ```
 
+##### Run Notebook
+Click notebook `04_lstm_forecast_model.ipynb` in jupterLab UI and run jupyter notebook.
+
+
 Running the example, we can see the RMSE for each repeated evaluation of the model. At
 the end of the run, we can see that the average RMSE is about 2,109, which is worse than the
 naive model. This suggests that the chosen model is not skillful, and it was the best that could
@@ -1643,6 +1653,9 @@ summarize_scores('cnn-lstm', scores)
 
 ```
 
+##### Run Notebook
+Click notebook `05_cnn_lstm_forecast_model.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example prints the RMSE for each repeated evaluation of the
 model. The final
 averaged RMSE is reported at the end of about 1,626, which is lower than
@@ -1927,6 +1940,9 @@ summarize_scores('convlstm', scores)
 
 ```
 
+##### Run Notebook
+Click notebook `06_convlstm_forecast_model.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example prints the RMSE for each repeated evaluation of the
 model. The final
 averaged RMSE is reported at the end of about 1,660, which is lower than
@@ -1988,24 +2004,6 @@ network model as part of walk-forward validation can further improve model perfo
 
 - More Parameterization. Explore adding further model parameterization for one model,
 such as the use of additional layers.
-
-##### Run Notebook
-Click notebook `01_simple_forecast.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `02_mlp_forecast_model.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `03_cnn_forecast_model.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `04_lstm_forecast_model.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `05_cnn_lstm_forecast_model.ipynb` in jupterLab UI and run jupyter notebook.
-
-##### Run Notebook
-Click notebook `06_convlstm_forecast_model.ipynb` in jupterLab UI and run jupyter notebook.
 
 ### Summary
 
