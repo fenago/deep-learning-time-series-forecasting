@@ -180,6 +180,9 @@ for i in range(len(X)):
 
 ```
 
+##### Run Notebook
+Click notebook `01_time_series_to_supervised.ipynb` in jupterLab UI and run jupyter notebook.
+
 Running the example first prints the shape of the time series, in this case 10 time steps
 of observations. Next, the series is split into input and output components for a supervised
 learning problem. We can see that for the chosen representation that we have 7 samples for the
